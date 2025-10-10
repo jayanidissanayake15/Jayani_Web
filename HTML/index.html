@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jayani Dissanayake | Portfolio</title>
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+
+        :root {
+            --primary-blue: #00ccff;
+            --secondary-accent: #B0B0B0;
+            --dark-blue-bg: #000814;
+            --mid-blue-bg: #001133;
+            --card-bg: rgba(0, 0, 40, 0.7);
+            --text-light: #e0e8ff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle at top, var(--mid-blue-bg), var(--dark-blue-bg));
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: rgba(0, 10, 30, 0.85);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--secondary-accent); /* Updated */
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            padding: 5px 0;
+            transition: color 0.3s, text-shadow 0.3s;
+            font-weight: 500;
+            position: relative;
+        }
+
+
+        .nav-links a:hover {
+            color: var(--secondary-accent);
+            text-shadow: 0 0 5px var(--secondary-accent);
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            padding-top: 80px;
+        }
+
+        .hero-content h3 {
+            color: var(--primary-blue);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            color: var(--text-light);
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .hero-content h2 {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            text-shadow: 0 0 15px rgba(0, 204, 255, 0.7);
+        }
+
+        .hero-content .highlight {
+            color: var(--secondary-accent);
+            text-shadow: 0 0 20px var(--secondary-accent);
+        }
+
+        .hero-content p {
+            margin-top: 20px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.1rem;
+            color: #ccc;
+        }
+        .btn {
+            margin-top: 30px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-accent));
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.4s;
+            display: inline-block;
+            box-shadow: 0 5px 20px rgba(0, 204, 255, 0.5);
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            transform: scale(1.05) translateY(-2px);
+
+            box-shadow: 0 8px 30px rgba(176, 176, 176, 0.7);
+            filter: brightness(1.1);
+        }
+
+
+        section {
+            padding: 120px 60px;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: var(--primary-blue);
+            font-weight: 700;
+            position: relative;
+        }
+
+        .section-title i {
+            color: var(--secondary-accent);
+            margin-right: 15px;
+        }
+
+        .edu-container, .project-container, .assign-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .edu-card, .project-card, .assign-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: left;
+            border: 1px solid rgba(0, 204, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            transition: 0.3s;
+        }
+
+        .edu-card:hover, .project-card:hover, .assign-card:hover {
+            box-shadow: 0 0 25px rgba(0, 204, 255, 0.6);
+            transform: translateY(-8px);
+            border-color: var(--primary-blue);
+        }
+
+        .edu-card h3, .project-card h3, .assign-card h3 {
+            color: var(--secondary-accent);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+
+            border-bottom: 2px solid rgba(176, 176, 176, 0.3);
+            padding-bottom: 5px;
+        }
+
+        .edu-card p, .project-card p, .assign-card p {
+            color: #b0c4de;
+            margin-top: 5px;
+        }
+
+        .card-meta {
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .project-card a, .assign-card a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 15px;
+            transition: color 0.3s;
+        }
+
+        .project-card a:hover, .assign-card a:hover {
+            color: var(--secondary-accent);
+        }
+
+        .about p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 204, 255, 0.2);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+
+            border: 3px solid rgba(176, 176, 176, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .gallery-grid img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px var(--secondary-accent);
+            border-color: var(--secondary-accent);
+        }
+
+        .contact-info {
+            text-align: left;
+            max-width: 450px;
+            margin: auto;
+            line-height: 2.5;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--primary-blue);
+            box-shadow: 0 0 20px rgba(0, 204, 255, 0.4);
+            font-size: 1.1rem;
+        }
+
+        .contact-info strong {
+            color: var(--primary-blue);
+            margin-right: 10px;
+        }
+
+        .contact-info a {
+            color: var(--secondary-accent);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .contact-info i {
+            width: 30px;
+            text-align: center;
+            color: var(--primary-blue);
+        }
+
+        footer {
+            background: #000a1a;
+            text-align: center;
+            padding: 30px;
+            color: #aaa;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(0, 204, 255, 0.1);
+        }
+
+        @media (max-width: 900px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+            .nav-links {
+                gap: 15px;
+            }
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            .hero-content h2 {
+                font-size: 1.5rem;
+            }
+            section {
+                padding: 80px 20px;
+            }
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 40px;
+            }
+            .edu-container, .project-container, .assign-container {
+                grid-template-columns: 1fr;
+            }
+            .about p {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .navbar {
+                flex-direction: column;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+            .logo {
+                margin-bottom: 10px;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar">
+        <h2 class="logo">Jayani<span></span></h2>
+        <ul class="nav-links">
+            <li><a href="#hero"><i class="fa-solid fa-house-chimney"></i> Home</a></li>
+            <li><a href="#about"><i class="fa-solid fa-user-tie"></i> About</a></li>
+            <li><a href="#education"><i class="fa-solid fa-graduation-cap"></i> Education</a></li>
+            <li><a href="#projects"><i class="fa-solid fa-folder-open"></i> Projects</a></li>
+            <li><a href="#assignments"><i class="fa-solid fa-list-check"></i> Exercises</a></li>
+            <li><a href="#gallery"><i class="fa-solid fa-palette"></i> Gallery</a></li>
+            <li><a href="#contact"><i class="fa-solid fa-paper-plane"></i> Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section id="hero" class="hero">
+    <div class="hero-content">
+        <h3><i class="fa-solid fa-laptop-code"></i> Hello, It’s Me</h3>
+        <h1>Jayani Dissanayake</h1>
+        <h2>And I’m a <span class="highlight">Beginner Software Engineer</span></h2>
+        <p>Passionate about coding, UI/UX, and building creative digital experiences. My academic portfolio showcases my proficiency in JavaFX, MySQL, and layered architecture design through comprehensive course work.</p>
+        <a href="#projects" class="btn">View Academic Work <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+</section>
+
+<section id="about" class="about">
+    <h2 class="section-title">About Me</h2>
+    <p>
+        As a motivated professional transitioning from business management to software engineering, I bring a unique blend of analytical rigor and technical skill.
+        I am highly proficient in **JavaFX** for building robust desktop applications, **MySQL** for efficient data management, and designing systems using **layered architecture** and **MVC patterns**.
+        My background in management accounting and reporting provides me with strong analytical and problem-solving abilities, which I apply to architect effective and maintainable software solutions.
+    </p>
+</section>
+
+<section id="education" class="education">
+    <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Educational Foundation</h2>
+    <div class="edu-container">
+        <div class="edu-card">
+            <span class="card-meta">2021 – Present</span>
+            <h3>BSc in Software Engineering</h3>
+            <p>Institute of XYZ — Focused on Object-Oriented Design and Database Systems.</p>
+        </div>
+        <div class="edu-card">
+            <span class="card-meta">2019 – 2020</span>
+            <h3>Diploma in Business Management</h3>
+            <p>ABC Institute — Developed strong management accounting, reporting, and analysis skills.</p>
+        </div>
+    </div>
+</section>
+
+
+<section id="projects" class="projects">
+    <h2 class="section-title"><i class="fa-solid fa-folder-open"></i> Featured Course Projects</h2>
+    <div class="project-container">
+
+        <div class="project-card">
+            <span class="card-meta">ORM Concepts | Layered Architecture | JavaFX | Scene Builder</span>
+            <h3>Driving School Management System</h3>
+            <p>Designed and implemented a full-scale application utilizing **ORM principles** for robust data management, built with a strict **Layered Architecture** for scalability, and featuring a professional user interface created using **JavaFX and Scene Builder**.</p>
+            <a href="#"><i class="fa-solid fa-up-right-from-square"></i> View Project Source</a>
+        </div>
+
+        <div class="project-card">
+            <span class="card-meta">JavaFX | MySQL | UI/UX</span>
+            <h3>Hotel Management System (Layered Architecture)</h3>
+            <p>Advanced system showcasing expertise in separating concerns (DAO, Service, Controller) for maintainable and scalable enterprise application design, including detailed reporting.</p>
+            <a href="#"><i class="fa-solid fa-up-right-from-square"></i> View Project Documentation</a>
+        </div>
+        <div class="project-card">
+            <span class="card-meta">JavaFX | MVC Pattern</span>
+            <h3>Hotel Management System (MVC)</h3>
+            <p>Implemented the Model-View-Controller design pattern for managing rooms, employees, and bookings, focusing on clear separation of data, logic, and presentation.</p>
+            <a href="#"><i class="fa-solid fa-up-right-from-square"></i> View Case Study</a>
+        </div>
+        <div class="project-card">
+            <span class="card-meta">Core Java | Console</span>
+            <h3>Library Management System</h3>
+            <p>A foundational project demonstrating command-line logic for managing books, member records, and loan transactions using pure object-oriented programming principles.</p>
+            <a href="#"><i class="fa-solid fa-up-right-from-square"></i> View Repository</a>
+        </div>
+    </div>
+</section>
+
+
+<section id="assignments" class="assignments">
+    <h2 class="section-title"><i class="fa-solid fa-clipboard-list"></i> Exercises & Skill Demonstrations</h2>
+    <div class="assign-container">
+        <div class="assign-card">
+            <span class="card-meta">JavaFX | MySQL</span>
+            <h3>CRUD Application Development</h3>
+            <p>Focused lab exercise to demonstrate the ability to implement Create, Read, Update, and Delete operations effectively for simple employee record management.</p>
+            <a href="#"><i class="fa-solid fa-code"></i> View Code Snippet</a>
+        </div>
+        <div class="assign-card">
+            <span class="card-meta">HTML | CSS</span>
+            <h3>Responsive Portfolio Website</h3>
+            <p>The development of this website itself, showcasing foundational skills in modern, responsive web layout and custom styling techniques.</p>
+            <a href="#"><i class="fa-solid fa-code"></i> View Source Code</a>
+        </div>
+    </div>
+</section>
+
+
+<section id="gallery" class="gallery">
+    <h2 class="section-title"><i class="fa-solid fa-images"></i> Visual Deliverables</h2>
+    <p style="margin-bottom: 30px; color: #b0c4de;">Screenshots of application UIs, database diagrams, and architectural blueprints from my course work.</p>
+    <div class="gallery-grid">
+
+        <img src="https://placehold.co/400x300/0f172a/00ccff?text=Hotel+UI+Screen" alt="Hotel Management System UI Screenshot" onerror="this.src='https://placehold.co/400x300/0f172a/00ccff?text=Hotel+UI+Screen'">
+        <img src="https://placehold.co/400x300/0f172a/B0B0B0?text=Layered+Architecture+Diagram" alt="System Architecture Diagram" onerror="this.src='https://placehold.co/400x300/0f172a/B0B0B0?text=Layered+Architecture+Diagram'">
+        <img src="https://placehold.co/400x300/0f172a/00ccff?text=MySQL+Schema+ERD" alt="Database Entity Relationship Diagram" onerror="this.src='https://placehold.co/400x300/0f172a/00ccff?text=MySQL+Schema+ERD'">
+        <img src="https://placehold.co/400x300/0f172a/B0B0B0?text=JavaFX+Login+Module" alt="JavaFX Login Module Screenshot" onerror="this.src='https://placehold.co/400x300/0f172a/B0B0B0?text=JavaFX+Login+Module'">
+    </div>
+</section>
+
+
+<section id="contact" class="contact">
+    <h2 class="section-title"><i class="fa-solid fa-paper-plane"></i> Get in Touch</h2>
+    <div class="contact-info">
+        <p>
+            <i class="fa-solid fa-envelope"></i> <strong>Email:</strong>
+            <a href="mailto:jayanidissanayake15@gmail.com">jayanidissanayake15@gmail.com</a>
+        </p>
+        <p>
+            <i class="fa-solid fa-phone"></i> <strong>Phone:</strong>
+            <a href="tel:+94704834552">+94 704834552</a>
+        </p>
+        <p>
+            <i class="fa-brands fa-linkedin"></i> <strong>LinkedIn:</strong>
+            <a href="#">Jayani Dissanayake</a>
+        </p>
+        <p>
+            <i class="fa-brands fa-github"></i> <strong>GitHub:</strong>
+            <a href="#">JayaniDissanayake</a>
+        </p>
+    </div>
+</section>
+
+<footer>
+    <p><i class="fa-regular fa-copyright"></i> 2025 Jayani Dissanayake. Academic Portfolio. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
