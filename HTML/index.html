@@ -224,6 +224,27 @@
         }
 
 
+        .social-icons {
+            margin-top: 40px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .social-icons a {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            transition: transform 0.3s, color 0.3s, filter 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--secondary-accent);
+            transform: translateY(-5px) scale(1.1);
+            filter: drop-shadow(0 0 10px rgba(176, 176, 176, 0.8));
+        }
+
+
+
         section {
             padding: 120px 60px;
             text-align: center;
@@ -431,6 +452,11 @@
             .about p {
                 padding: 30px 20px;
             }
+
+            /* Adjust social icons for mobile to keep them centered */
+            .social-icons {
+                justify-content: center;
+            }
         }
 
         @media (max-width: 500px) {
@@ -486,6 +512,13 @@
         <h2>And I’m a <span class="highlight">Beginner Software Engineer</span></h2>
         <p>Passionate about coding, UI/UX, and building creative digital experiences. My academic portfolio showcases my proficiency in JavaFX, MySQL, and layered architecture design through comprehensive course work.</p>
         <a href="#projects" class="btn">View Academic Work <i class="fa-solid fa-arrow-right"></i></a>
+
+        <div class="social-icons">
+            <a href="https://github.com/jayanidissanayake15" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="#" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://wa.me/94704834552" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="mailto:jayanidissanayake15@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+        </div>
     </div>
 
     <div class="hero-image">
