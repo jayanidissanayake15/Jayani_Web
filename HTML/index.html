@@ -15,22 +15,16 @@
             scroll-behavior: smooth;
         }
         :root {
-            /* CHANGED: Primary Blue replaced with Professional Light Gray */
-            --primary-accent-color: #AAAAAA; /* Light Gray for main contrast */
-            /* CHANGED: Secondary accent color changed to a darker, subtle Gray */
-            --secondary-accent: #666666; /* Darker Gray for subtle highlights */
-            /* CHANGED: Backgrounds shifted to near-black/dark gray */
-            --dark-bg: #111111; /* Deep Black */
-            --mid-bg: #1a1a1a; /* Mid Dark Gray */
-            /* CHANGED: Card background is now transparent dark */
-            --card-bg: rgba(25, 25, 25, 0.9);
-            /* CHANGED: Text is now clean white/off-white */
-            --text-light: #f5f5f5;
+            --primary-blue: #00ccff;
+            --secondary-accent: #B0B0B0;
+            --dark-blue-bg: #000814;
+            --mid-blue-bg: #001133;
+            --card-bg: rgba(0, 0, 40, 0.7);
+            --text-light: #e0e8ff;
         }
         body {
             font-family: 'Poppins', sans-serif;
-            /* CHANGED: Background gradient uses new dark/mid dark colors */
-            background: radial-gradient(circle at top, var(--mid-bg), var(--dark-bg));
+            background: radial-gradient(circle at top, var(--mid-blue-bg), var(--dark-blue-bg));
             color: var(--text-light);
             line-height: 1.6;
             min-height: 100vh;
@@ -40,23 +34,20 @@
             justify-content: space-between;
             align-items: center;
             padding: 25px 60px;
-            /* CHANGED: Navbar background is now near-black with blur */
-            background: rgba(10, 10, 10, 0.85);
+            background: rgba(0, 10, 30, 0.85);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 100;
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8); /* Darker shadow */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
         .logo {
-            /* CHANGED: Logo color uses the new primary accent gray */
-            color: var(--primary-accent-color);
+            color: var(--primary-blue);
             font-size: 1.8rem;
             font-weight: 700;
         }
         .logo span {
-            /* CHANGED: Logo span uses the new secondary accent gray */
             color: var(--secondary-accent);
         }
         .logo-img {
@@ -81,7 +72,6 @@
             position: relative;
         }
         .nav-links a:hover {
-            /* CHANGED: Hover color uses the new secondary accent gray */
             color: var(--secondary-accent);
             text-shadow: 0 0 5px var(--secondary-accent);
         }
@@ -100,8 +90,7 @@
             max-width: 50%;
         }
         .hero-content h3 {
-            /* CHANGED: H3 color uses the new primary accent gray */
-            color: var(--primary-accent-color);
+            color: var(--primary-blue);
             font-size: 1.4rem;
             font-weight: 600;
             margin-bottom: 10px;
@@ -141,15 +130,11 @@
         }
         .hero-content h2 {
             font-size: 2rem;
-            /* CHANGED: H2 color uses the new primary accent gray */
-            color: var(--primary-accent-color);
-            /* CHANGED: Text shadow uses the new primary accent gray */
-            text-shadow: 0 0 15px rgba(170, 170, 170, 0.7);
+            color: var(--primary-blue);
+            text-shadow: 0 0 15px rgba(0, 204, 255, 0.7);
         }
         .hero-content .highlight {
-            /* CHANGED: Highlight uses the new secondary accent gray */
             color: var(--secondary-accent);
-            /* CHANGED: Highlight shadow uses the new secondary accent gray */
             text-shadow: 0 0 20px var(--secondary-accent);
         }
         .hero-content p {
@@ -165,17 +150,14 @@
             height: 300px;
             margin-left: 50px;
             position: relative;
-            /* CHANGED: Border uses the new primary accent gray */
-            border: 5px solid var(--primary-accent-color);
+            border: 5px solid var(--primary-blue);
             border-radius: 50%;
-            /* CHANGED: Box shadow uses new primary/secondary accent gray for monochrome glow */
-            box-shadow: 0 0 40px rgba(170, 170, 170, 0.5), 0 0 80px rgba(102, 102, 102, 0.3);
+            box-shadow: 0 0 40px rgba(0, 204, 255, 0.5), 0 0 80px rgba(176, 176, 176, 0.3);
             overflow: hidden;
             transition: all 0.5s ease;
         }
         .hero-image:hover {
-            /* CHANGED: Hover shadow uses new primary/secondary accent gray */
-            box-shadow: 0 0 60px var(--primary-accent-color), 0 0 100px var(--secondary-accent);
+            box-shadow: 0 0 60px var(--primary-blue), 0 0 100px var(--secondary-accent);
             transform: scale(1.02);
         }
         .hero-image img {
@@ -187,26 +169,23 @@
         }
         .btn {
             margin-top: 30px;
-            /* CHANGED: Button uses a very subtle gradient between the two accent grays */
-            background: linear-gradient(90deg, var(--primary-accent-color), var(--secondary-accent));
-            color: #111111; /* Dark text on light button for contrast */
+            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-accent));
+            color: #fff;
             padding: 12px 30px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: bold;
             transition: 0.4s;
             display: inline-block;
-            /* CHANGED: Box shadow uses the new primary accent gray */
-            box-shadow: 0 5px 20px rgba(170, 170, 170, 0.5);
+            box-shadow: 0 5px 20px rgba(0, 204, 255, 0.5);
             border: none;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
         .btn:hover {
             transform: scale(1.05) translateY(-2px);
-            /* CHANGED: Hover box shadow uses the new secondary accent gray */
-            box-shadow: 0 8px 30px rgba(102, 102, 102, 0.7);
-            filter: brightness(1.2); /* Slightly brighter on hover */
+            box-shadow: 0 8px 30px rgba(176, 176, 176, 0.7);
+            filter: brightness(1.1);
         }
         .social-icons {
             margin-top: 40px;
@@ -216,16 +195,13 @@
         }
         .social-icons a {
             font-size: 1.8rem;
-            /* CHANGED: Icon color uses the new primary accent gray */
-            color: var(--primary-accent-color);
+            color: var(--primary-blue);
             transition: transform 0.3s, color 0.3s, filter 0.3s;
         }
         .social-icons a:hover {
-            /* CHANGED: Icon hover color uses the new secondary accent gray */
             color: var(--secondary-accent);
             transform: translateY(-5px) scale(1.1);
-            /* CHANGED: Drop shadow uses the new secondary accent gray */
-            filter: drop-shadow(0 0 10px rgba(102, 102, 102, 0.8));
+            filter: drop-shadow(0 0 10px rgba(176, 176, 176, 0.8));
         }
         section {
             padding: 120px 60px;
@@ -236,13 +212,11 @@
         .section-title {
             font-size: 2.5rem;
             margin-bottom: 60px;
-            /* CHANGED: Section title color uses the new primary accent gray */
-            color: var(--primary-accent-color);
+            color: var(--primary-blue);
             font-weight: 700;
             position: relative;
         }
         .section-title i {
-            /* CHANGED: Icon color uses the new secondary accent gray */
             color: var(--secondary-accent);
             margin-right: 15px;
         }
@@ -252,47 +226,39 @@
             gap: 30px;
         }
         .edu-card, .project-card, .assign-card, .stream-card, .work-card, .activity-card {
-            /* CHANGED: Card background uses the new card dark background */
             background: var(--card-bg);
             padding: 30px;
             border-radius: 15px;
             text-align: left;
-            /* CHANGED: Border uses a subtle transparent version of the new accent */
-            border: 1px solid rgba(170, 170, 170, 0.1);
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Darker, less colored shadow */
+            border: 1px solid rgba(0, 204, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             transition: 0.3s;
         }
         .edu-card:hover, .project-card:hover, .assign-card:hover, .stream-card:hover, .work-card:hover, .activity-card:hover {
-            /* CHANGED: Box shadow uses the new primary accent gray */
-            box-shadow: 0 0 25px rgba(170, 170, 170, 0.6);
+            box-shadow: 0 0 25px rgba(0, 204, 255, 0.6);
             transform: translateY(-8px);
-            /* CHANGED: Border color uses the new primary accent gray */
-            border-color: var(--primary-accent-color);
+            border-color: var(--primary-blue);
         }
         .edu-card h3, .project-card h3, .assign-card h3, .stream-card h3, .work-card h3, .activity-card h3 {
-            /* CHANGED: H3 color uses the new secondary accent gray */
             color: var(--secondary-accent);
             font-size: 1.5rem;
             margin-bottom: 10px;
-            /* CHANGED: Border color uses a darker gray */
-            border-bottom: 2px solid rgba(102, 102, 102, 0.3);
+            border-bottom: 2px solid rgba(176, 176, 176, 0.3);
             padding-bottom: 5px;
         }
         .edu-card p, .project-card p, .assign-card p, .stream-card p, .work-card p, .activity-card p {
-            color: #cccccc; /* Slightly lighter gray for body text */
+            color: #b0c4de;
             margin-top: 5px;
         }
         .card-meta {
-            /* CHANGED: Meta text uses the new primary accent gray */
-            color: var(--primary-accent-color);
+            color: var(--primary-blue);
             font-weight: 600;
             font-size: 0.9rem;
             display: block;
             margin-bottom: 5px;
         }
         .project-card a, .assign-card a {
-            /* CHANGED: Link color uses the new primary accent gray */
-            color: var(--primary-accent-color);
+            color: var(--primary-blue);
             text-decoration: none;
             font-weight: 600;
             display: inline-block;
@@ -300,7 +266,6 @@
             transition: color 0.3s;
         }
         .project-card a:hover, .assign-card a:hover {
-            /* CHANGED: Link hover color uses the new secondary accent gray */
             color: var(--secondary-accent);
         }
         .about p {
@@ -311,8 +276,7 @@
             background: var(--card-bg);
             padding: 40px;
             border-radius: 15px;
-            /* CHANGED: Box shadow uses the new primary accent gray */
-            box-shadow: 0 0 15px rgba(170, 170, 170, 0.2);
+            box-shadow: 0 0 15px rgba(0, 204, 255, 0.2);
         }
         .skills-container {
             max-width: 800px;
@@ -320,17 +284,14 @@
             background: var(--card-bg);
             padding: 40px;
             border-radius: 15px;
-            /* CHANGED: Box shadow uses the new primary accent gray */
-            box-shadow: 0 0 15px rgba(170, 170, 170, 0.2);
+            box-shadow: 0 0 15px rgba(0, 204, 255, 0.2);
         }
         .skills-container h3 {
-            /* CHANGED: H3 color uses the new primary accent gray */
-            color: var(--primary-accent-color);
+            color: var(--primary-blue);
             font-size: 1.5rem;
             margin-bottom: 25px;
             font-weight: 600;
-            /* CHANGED: Border uses a transparent version of the new primary accent */
-            border-bottom: 2px solid rgba(170, 170, 170, 0.3);
+            border-bottom: 2px solid rgba(0, 204, 255, 0.3);
             padding-bottom: 10px;
         }
         .skills-icons {
@@ -374,8 +335,7 @@
         }
         .skills-icons a:hover img {
             transform: scale(1.15) rotate(5deg);
-            /* CHANGED: Drop shadow uses the new primary accent gray */
-            filter: drop-shadow(0 0 15px var(--primary-accent-color));
+            filter: drop-shadow(0 0 15px var(--primary-blue));
         }
         .gallery-grid {
             display: grid;
@@ -387,15 +347,12 @@
             height: 200px;
             object-fit: cover;
             border-radius: 10px;
-            /* CHANGED: Border uses a subtle gray */
-            border: 3px solid rgba(102, 102, 102, 0.2);
+            border: 3px solid rgba(176, 176, 176, 0.2);
             transition: transform 0.3s, box-shadow 0.3s;
         }
         .gallery-grid img:hover {
             transform: scale(1.02);
-            /* CHANGED: Box shadow uses the new secondary accent gray */
             box-shadow: 0 0 30px var(--secondary-accent);
-            /* CHANGED: Border color uses the new secondary accent gray */
             border-color: var(--secondary-accent);
         }
         .contact-info {
@@ -406,10 +363,8 @@
             background: var(--card-bg);
             padding: 30px;
             border-radius: 15px;
-            /* CHANGED: Border uses the new primary accent gray */
-            border: 1px solid var(--primary-accent-color);
-            /* CHANGED: Box shadow uses the new primary accent gray */
-            box-shadow: 0 0 20px rgba(170, 170, 170, 0.4);
+            border: 1px solid var(--primary-blue);
+            box-shadow: 0 0 20px rgba(0, 204, 255, 0.4);
             font-size: 1.1rem;
         }
         .contact-info strong {
@@ -426,26 +381,22 @@
             margin-left: 10px;
         }
         .contact-info a:hover {
-            /* CHANGED: Link hover color uses the new secondary accent gray */
             color: var(--secondary-accent);
             text-decoration: underline;
         }
         .contact-info i {
             width: 30px;
             text-align: center;
-            /* CHANGED: Icon color uses the new primary accent gray */
-            color: var(--primary-accent-color);
+            color: var(--primary-blue);
             font-size: 1.3rem;
         }
         footer {
-            /* CHANGED: Footer background is very dark black */
-            background: #050505;
+            background: #000a1a;
             text-align: center;
             padding: 30px;
             color: #aaa;
             font-size: 0.9rem;
-            /* CHANGED: Border uses a subtle gray */
-            border-top: 1px solid rgba(170, 170, 170, 0.1);
+            border-top: 1px solid rgba(0, 204, 255, 0.1);
         }
         @media (max-width: 900px) {
             .navbar {
@@ -572,7 +523,7 @@
     </p>
 </section>
 <section id="streams" class="streams">
-    <h2 class="section-title"><i class="fa-solid fa-compass"></i> Interests</h2>
+    <h2 class="section-title"><i class="fa-solid fa-compass"></i> Preferred Streams/Interests</h2>
     <div class="streams-container">
         <div class="stream-card">
             <h3>Web Development (Front-End)</h3>
@@ -589,7 +540,7 @@
     </div>
 </section>
 <section id="skills" class="skills">
-    <h2 class="section-title"><i class="fa-solid fa-screwdriver-wrench"></i> Technical Skill  & Tools</h2>
+    <h2 class="section-title"><i class="fa-solid fa-screwdriver-wrench"></i> Technical Skill Set & Tools</h2>
     <div class="skills-container">
         <div class="skills-icons">
             <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a>
@@ -623,7 +574,21 @@
         </div>
     </div>
 </section>
-
+<section id="experience" class="work-experience">
+    <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Work Experience</h2>
+    <div class="experience-container">
+        <div class="work-card">
+            <span class="card-meta">Jan 2020 – Dec 2021</span>
+            <h3>Junior Accountant</h3>
+            <p>Global Solutions Co. — Managed monthly financial reports and reconciled ledgers, applying analytical rigor to business data.</p>
+        </div>
+        <div class="work-card">
+            <span class="card-meta">ABC company</span>
+            <h3>IT Support Assistant</h3>
+            <p>Tech Innovations Ltd. — Assisted with hardware and software deployment, troubleshooting network issues and providing end-user support.</p>
+        </div>
+    </div>
+</section>
 <section id="projects" class="projects">
     <h2 class="section-title"><i class="fa-solid fa-folder-open"></i> Featured Course Projects</h2>
     <div class="project-container">
@@ -689,6 +654,10 @@
     <h2 class="section-title"><i class="fa-solid fa-images"></i> Gallery</h2>
     <p style="margin-bottom: 30px; color: #b0c4de;"></p>
     <div class="gallery-grid">
+        <!--        <img src="https://placehold.co/400x300/0f172a/00ccff?text=Hotel+UI+Screen" alt="Hotel Management System UI Screenshot" onerror="this.src='https://placehold.co/400x300/0f172a/00ccff?text=Hotel+UI+Screen'">-->
+        <!--        <img src="https://placehold.co/400x300/0f172a/B0B0B0?text=Layered+Architecture+Diagram" alt="System Architecture Diagram" onerror="this.src='https://placehold.co/400x300/0f172a/B0B0B0?text=Layered+Architecture+Diagram'">-->
+        <!--        <img src="https://placehold.co/400x300/0f172a/00ccff?text=MySQL+Schema+ERD" alt="Database Entity Relationship Diagram" onerror="this.src='https://placehold.co/400x300/0f172a/00ccff?text=MySQL+Schema+ERD'">-->
+        <!--        <img src="https://placehold.co/400x300/0f172a/B0B0B0?text=JavaFX+Login+Module" alt="JavaFX Login Module Screenshot" onerror="this.src='https://placehold.co/400x300/0f172a/B0B0B0?text=JavaFX+Login+Module'">-->
     </div>
 </section>
 <section id="contact" class="contact">
@@ -739,7 +708,11 @@
         }, 10);
     }
     window.addEventListener('hashchange', resetAnimation);
+
     document.addEventListener('DOMContentLoaded', resetAnimation);
+
 </script>
+
 </body>
+
 </html>
