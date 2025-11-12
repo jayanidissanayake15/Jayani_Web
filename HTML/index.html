@@ -8,9 +8,6 @@
     <link rel="stylesheet" href="lib/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="lib/normalize.css">
     <style>
-        /* ===================================================
-           1. COLOR PALETTE & GLOBAL STYLES
-           =================================================== */
         * {
             margin: 0;
             padding: 0;
@@ -18,15 +15,12 @@
             scroll-behavior: smooth;
         }
         :root {
-            /* Primary Colors - Professional Blue Scheme */
-            --primary-blue: #041750; /* Deep Navy Blue */
-            --secondary-accent: #00a6ff; /* Vibrant Blue/Light Blue */
-            /* Backgrounds */
-            --light-bg: #F7FAFC; /* Very Light Gray/Off-White */
+            --primary-blue: #041750;
+            --secondary-accent: #00a6ff;
+            --light-bg: #F7FAFC;
             --card-bg: #ffffff;
-            /* Text Colors */
-            --text-dark: #1f2937; /* Dark Navy Gray */
-            --text-muted: #6b7280; /* Muted gray for paragraphs */
+            --text-dark: #1f2937;
+            --text-muted: #6b7280;
         }
         body {
             font-family: 'Poppins', sans-serif;
@@ -36,9 +30,6 @@
             min-height: 100vh;
         }
 
-        /* ===================================================
-           2. ANIMATIONS (KEYFRAMES)
-           =================================================== */
         @keyframes rise-in {
             0% { opacity: 0; transform: translateY(20px); filter: blur(5px); }
             100% { opacity: 1; transform: translateY(0); filter: blur(0); }
@@ -52,12 +43,10 @@
             0% { opacity: 0; transform: translateY(30px); filter: blur(0); }
             100% { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
-        /* Custom Animation for About Me section */
         @keyframes text-shift-in {
             0% { opacity: 0; transform: translateY(15px); filter: blur(3px); }
             100% { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
-        /* Pulsing Border Glow for Image Hover */
         @keyframes pulse-border {
             0% {
                 box-shadow: 0 0 10px var(--secondary-accent), 0 0 30px rgba(0, 166, 255, 0.4);
@@ -72,13 +61,15 @@
                 border-color: var(--secondary-accent);
             }
         }
+        @keyframes pulse-glow {
+            0% { transform: scale(1); box-shadow: 0 0 5px rgba(0, 166, 255, 0.5); }
+            50% { transform: scale(1.05); box-shadow: 0 0 15px var(--secondary-accent); }
+            100% { transform: scale(1); box-shadow: 0 0 5px rgba(0, 166, 255, 0.5); }
+        }
         .animate-on-scroll {
             opacity: 0;
         }
 
-        /* ===================================================
-           3. NAVIGATION & HEADER
-           =================================================== */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -120,24 +111,20 @@
             border-bottom: 2px solid var(--primary-blue);
         }
 
-        /* NEW: Styles for the mobile menu toggle button */
         .menu-toggle {
-            display: none; /* Hidden by default on desktop */
+            display: none;
             background: none;
             border: none;
             color: var(--primary-blue);
             font-size: 1.8rem;
             cursor: pointer;
-            z-index: 101; /* Ensure it's above the menu */
+            z-index: 101;
             transition: transform 0.3s;
         }
         .menu-toggle:active {
             transform: scale(0.9);
         }
 
-        /* ===================================================
-           4. HERO SECTION
-           =================================================== */
         .hero {
             height: 100vh;
             display: flex;
@@ -148,11 +135,10 @@
             position: relative;
         }
 
-        /* New container wraps the image and icons for vertical stacking and alignment */
         .hero-image-and-social {
             display: flex;
-            flex-direction: column; /* Stack image and icons vertically */
-            align-items: center; /* Center horizontally (for icons) */
+            flex-direction: column;
+            align-items: center;
             margin-left: 50px;
         }
 
@@ -259,9 +245,6 @@
             filter: brightness(1.1);
         }
 
-        /* ===================================================
-           5. SECTION TITLES & LAYOUT
-           =================================================== */
         section {
             padding: 120px 100px;
             text-align: center;
@@ -274,7 +257,6 @@
             color: var(--primary-blue);
             font-weight: 700;
             position: relative;
-            /* ENSURE TITLE IS CENTERED */
             text-align: center;
             transition: all 0.5s ease-out;
         }
@@ -284,32 +266,26 @@
         }
         .edu-container, .project-container, .assign-container, .streams-container, .experience-container, .activities-container {
             display: grid;
-            /* UPDATED: Increased min width for wider edu cards */
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
         }
 
-        /* Card Styles and Hover Animation */
         .edu-card, .project-card, .assign-card, .stream-card, .work-card, .activity-card {
             background: var(--card-bg);
             padding: 30px;
             border-radius: 15px;
             text-align: left;
-            /* --- PROJECT CARD STYLES (3px border, shadow, hover effect) --- */
-            border: 3px solid var(--primary-blue); /* Added 3px base border */
-            box-shadow: 0 5px 15px rgba(4, 23, 80, 0.1); /* Deeper initial shadow */
+            border: 3px solid var(--primary-blue);
+            box-shadow: 0 5px 15px rgba(4, 23, 80, 0.1);
             transition: 0.4s ease-in-out;
             opacity: 0;
-            /* ADDED MIN HEIGHT for uniformity/increased height */
             min-height: 250px;
         }
 
-        /* ADDED: Styles specific to Education Cards */
         .edu-card {
-            border: 5px solid var(--primary-blue); /* ADDED 5PX DARK BORDER */
+            border: 5px solid var(--primary-blue);
         }
 
-        /* ADDED: Dark border for Stream Cards */
         .stream-card {
             border: 3px solid var(--primary-blue);
         }
@@ -317,18 +293,18 @@
         .edu-card:hover, .project-card:hover, .assign-card:hover, .stream-card:hover, .work-card:hover, .activity-card:hover {
             box-shadow: 0 10px 30px rgba(4, 23, 80, 0.4);
             transform: translateY(-10px);
-            border-color: var(--secondary-accent); /* Border color change on hover */
+            border-color: var(--secondary-accent);
         }
 
         .edu-card h3, .project-card h3, .assign-card h3, .stream-card h3, .work-card h3, .activity-card h3 {
-            color: var(--text-dark); /* ENSURED DARK FONT */
+            color: var(--text-dark);
             font-size: 1.5rem;
             margin-bottom: 10px;
             border-bottom: 2px solid rgba(176, 176, 176, 0.3);
             padding-bottom: 5px;
         }
         .edu-card p, .project-card p, .assign-card p, .stream-card p, .work-card p, .activity-card p {
-            color: var(--text-dark); /* ENSURED DARK FONT */
+            color: var(--text-dark);
             margin-top: 5px;
         }
         .card-meta {
@@ -339,25 +315,21 @@
             margin-bottom: 5px;
         }
 
-        /* --- PROJECT/ASSIGNMENT BUTTON STYLES --- */
         .project-card a, .assign-card a {
-            color: #fff; /* Button text color is white */
+            color: #fff;
             text-decoration: none;
             font-weight: 600;
-            /* Display change for float compatibility and right alignment */
             display: inline-block;
             margin-top: 15px;
             transition: color 0.3s;
         }
 
-        /* New rule: Aligns the button to the right */
         .project-card .btn {
             float: right;
             margin-top: 15px;
             margin-bottom: 0;
         }
 
-        /* Clears the float within the card container */
         .project-card::after {
             content: "";
             display: block;
@@ -365,11 +337,9 @@
         }
 
         .project-card a:hover, .assign-card a:hover {
-            /* The hover for the .btn is defined higher up in .btn:hover */
-            color: #fff; /* Keep text white */
+            color: #fff;
         }
 
-        /* --- UPDATED ABOUT ME SECTION STYLES (Split Layout) --- */
         #about-split {
             text-align: left;
         }
@@ -384,19 +354,15 @@
             background: var(--card-bg);
             padding: 40px;
             border-radius: 15px;
-            /* UPDATED BORDER: Solid primary blue border */
             border: 5px solid var(--primary-blue);
             box-shadow: 0 5px 20px rgba(4, 23, 80, 0.15);
-
-            /* Animation settings */
             opacity: 0;
             transition: all 0.5s ease-in-out;
         }
 
-        /* ADDED Hover effect for visual animation cue */
         .about-split-container:hover {
             box-shadow: 0 10px 30px rgba(4, 23, 80, 0.4);
-            transform: translateY(-3px); /* Subtle lift animation */
+            transform: translateY(-3px);
         }
 
         .about-text-content {
@@ -429,6 +395,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-radius: 10px;
             display: block;
         }
 
@@ -437,16 +404,13 @@
             box-shadow: 0 10px 30px rgba(4, 23, 80, 0.5);
         }
 
-        /* ===================================================
-           6. SKILLS SECTION
-           =================================================== */
         .skills-container {
-            max-width: 1000px; /* INCREASED WIDTH */
+            max-width: 1000px;
             margin: 0 auto;
             background: var(--card-bg);
-            padding: 60px 40px; /* INCREASED VERTICAL PADDING */
+            padding: 60px 40px;
             border-radius: 15px;
-            border: 3px solid var(--primary-blue); /* ADDED DARK BORDER */
+            border: 3px solid var(--primary-blue);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             opacity: 0;
         }
@@ -472,20 +436,8 @@
             transform: scale(1.1) translateY(-5px);
             filter: drop-shadow(0 0 10px var(--primary-blue));
         }
-        /* ===================================================
-   NEW ANIMATIONS
-   =================================================== */
-        @keyframes pulse-glow {
-            0% { transform: scale(1); box-shadow: 0 0 5px rgba(0, 166, 255, 0.5); }
-            50% { transform: scale(1.05); box-shadow: 0 0 15px var(--secondary-accent); }
-            100% { transform: scale(1); box-shadow: 0 0 5px rgba(0, 166, 255, 0.5); }
-        }
-
-        /* ===================================================
-           CARD ID LABEL STYLES
-           =================================================== */
         .card-id {
-            float: right; /* Position to the right */
+            float: right;
             background: var(--secondary-accent);
             color: #fff;
             padding: 2px 8px;
@@ -493,44 +445,43 @@
             font-size: 0.75rem;
             font-weight: 700;
             letter-spacing: 1px;
-            margin-top: -10px; /* Pull it up slightly */
-            animation: pulse-glow 2s infinite ease-in-out; /* Apply new animation */
-            /* Ensure it doesn't wrap with h3 */
+            margin-top: -10px;
+            animation: pulse-glow 2s infinite ease-in-out;
             margin-left: 10px;
         }
 
-        /* Ensure project cards clear the float for proper height calculation */
         .project-card::after, .assign-card::after, .activity-card::after {
             content: "";
             display: table;
             clear: both;
         }
 
-        /* Position for the button at the very bottom */
         .project-card .btn, .assign-card .btn, .activity-card .btn {
-            /* The float: right is already defined in your original CSS,
-               but we ensure it clears the space */
             margin-top: 15px;
             margin-bottom: 0;
-            float: right; /* Maintain right alignment */
+            float: right;
         }
 
-        /* ===================================================
-           7. GALLERY & CONTACT
-           =================================================== */
+        #assignments .assign-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* UPDATED GALLERY GRID STYLES */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Increased min-width to 300px */
+            gap: 100px;
         }
         .gallery-grid img {
-            width: 100%;
-            height: 200px;
+            width: 65%;
+            height: 400px; /* Increased height to match */
             object-fit: cover;
             border-radius: 10px;
             border: 3px solid rgba(176, 176, 176, 0.2);
             transition: transform 0.3s, box-shadow 0.3s;
-            opacity: 0;
+            /* opacity: 0;  <--- THIS LINE WAS REMOVED */
         }
         .gallery-grid img:hover {
             transform: scale(1.02);
@@ -574,24 +525,19 @@
             border-top: 1px solid rgba(0, 0, 0, 0.1);
         }
 
-        /* ===================================================
-           8. MEDIA QUERIES
-           =================================================== */
         @media (max-width: 900px) {
             .navbar {
                 padding: 15px 20px;
             }
-            /* Show menu toggle icon on mobile */
             .menu-toggle {
                 display: block;
             }
 
-            /* Stack nav links vertically and hide them initially */
             .nav-links {
-                display: none; /* Hide by default */
+                display: none;
                 flex-direction: column;
                 position: absolute;
-                top: 70px; /* Position below the header */
+                top: 70px;
                 right: 0;
                 width: 100%;
                 background: rgba(255, 255, 255, 0.98);
@@ -599,14 +545,13 @@
                 padding: 20px 0;
                 border-top: 1px solid var(--secondary-accent);
                 z-index: 99;
-                /* Add a smooth transition for opening/closing */
                 transition: all 0.3s ease-in-out;
-                transform: translateY(-100%); /* Initial off-screen position */
+                transform: translateY(-100%);
             }
 
             .nav-links.active {
-                display: flex; /* Show when 'active' class is added */
-                transform: translateY(0); /* Slide into view */
+                display: flex;
+                transform: translateY(0);
             }
 
             .nav-links li {
@@ -652,14 +597,12 @@
                 padding: 80px 20px;
             }
 
-            /* Mobile adjustments for About Section */
             .about-split-container {
                 flex-direction: column;
                 padding: 30px;
                 gap: 30px;
             }
             .about-image-frame {
-                /* Make image wider on mobile */
                 max-width: 90%;
                 min-width: 90%;
                 height: 250px;
@@ -680,7 +623,7 @@
             <li><a href="#skills"><i class="fa-solid fa-code"></i> Skills</a></li>
             <li><a href="#education"><i class="fa-solid fa-graduation-cap"></i> Education</a></li>
             <li><a href="#projects"><i class="fa-solid fa-folder-open"></i> Projects</a></li>
-            <li><a href="#assignments"><i class="fa-solid fa-list-check"></i> Exercises</a></li>
+            <li><a href="#assignments"><i class="fa-solid fa-list-check"></i> Assignments</a></li>
             <li><a href="#activities"><i class="fa-solid fa-person-running"></i> Activities</a></li>
             <li><a href="#gallery"><i class="fa-solid fa-palette"></i> Gallery</a></li>
             <li><a href="#contact"><i class="fa-solid fa-paper-plane"></i> Contact</a></li>
@@ -776,15 +719,15 @@
             <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="60" height="60"/> </a>
             <a href="https://www.linux.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="60" height="60"/> </a>
             <a href="https://www.mysql.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="60" height="60"/> </a>
-            <a href="https://www.photoshop.com/en" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/photoshop/photoshop-line.svg" alt="photoshop" width="60" height="60"/> </a>
-            <a href="https://www.postgresql.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg" alt="postgresql" width="60" height="60"/> </a>
-            <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="60" height="60"/> </a>
+            <a href="httpsRead
+Me
+.
+photoshop.com/en" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/adobe_photoshop/adobe_photoshop-icon.svg" alt="photoshop" width="60" height="60"/> </a>
         </div>
     </div>
 </section>
 
 ---
-
 <section id="education" class="education">
     <h2 class="section-title animate-on-scroll"><i class="fa-solid fa-graduation-cap"></i> Educational Background</h2>
     <div class="edu-container">
@@ -819,6 +762,7 @@
 </section>
 
 ---
+
 <section id="projects" class="projects">
     <h2 class="section-title animate-on-scroll"><i class="fa-solid fa-folder-open"></i> Featured Course Projects</h2>
     <div class="project-container">
@@ -839,7 +783,7 @@
 
         <div class="project-card animate-on-scroll">
             <span class="card-meta">JavaFX | MySQL | UI/UX</span>
-            <h3>Hotel Management System (Layered Architecture) </h3>
+            <h3>Hotel Management System (Layered Architecture) </h3>
             <p>Advanced system demonstrating mastery in separating concerns across DAO, Service, and Controller layers, enabling maintainable, scalable enterprise applications with comprehensive reporting capabilities.</p>
             <a href="https://github.com/jayanidissanayake15/Holiday-Home-Management-System---Layerd" class="btn" target="_blank">View on GitHub</a>
         </div>
@@ -888,9 +832,10 @@
     </div>
 </section>
 
+---
 <section id="assignments" class="assignments">
     <h2 class="section-title animate-on-scroll"><i class="fa-solid fa-list-check"></i>Assignments</h2>
-    <div>
+    <div class="assign-container">
         <div class="assign-card animate-on-scroll">
             <span class="card-meta">HTML | CSS | Frontend</span>
             <h3>CSS Selectors Practice</h3>
@@ -924,25 +869,31 @@
     <div class="activities-container">
         <div class="activity-card animate-on-scroll">
             <span class="card-meta">Leadership | Teamwork</span>
-            <h3>GDSE Student Union Member</h3>
+            <h3>IJSE Student Committee Member</h3>
             <p>Active member of the Student Union, involved in organizing educational and networking events, fostering a collaborative learning environment among peers.</p>
         </div>
         <div class="activity-card animate-on-scroll">
-            <span class="card-meta">Creativity | Design</span>
+            <span class="card-meta">Creativity | Design | Digital Media</span>
             <h3>Digital Art & Graphic Design</h3>
-            <p>Engaged in digital art and graphic design projects, applying UI/UX principles to practical design work using tools like Photoshop and Figma.</p>
+            <p>
+                Specialized in creating visually engaging digital art and brand designs
+                by combining creativity with UI/UX design principles. Experienced in
+                tools such as <strong>Adobe Photoshop</strong>, <strong>Illustrator</strong>,
+                and <strong>Figma</strong> to craft digital content for marketing and social media platforms.
+            </p>
         </div>
     </div>
 </section>
 
 ---
 <section id="gallery" class="gallery">
-    <h2 class="section-title animate-on-scroll"><i class="fa-solid fa-palette"></i> Design Gallery & Concepts</h2>
+    <h2 class="section-title animate-on-scroll"><i class="fa-solid fa-palette"></i> Gallery </h2>
+
     <div class="gallery-grid">
-        <img src="https://placehold.co/220x200/041750/00a6ff?text=UI+Concept+1" alt="UI Concept 1" class="animate-on-scroll">
-        <img src="https://placehold.co/220x200/041750/00a6ff?text=Web+Layout" alt="Web Layout" class="animate-on-scroll">
-        <img src="https://placehold.co/220x200/041750/00a6ff?text=App+Mockup" alt="App Mockup" class="animate-on-scroll">
-        <img src="https://placehold.co/220x200/041750/00a6ff?text=Design+Poster" alt="Design Poster" class="animate-on-scroll">
+        <div class="gallery-item animate-on-scroll"><img src="assets/images/j2.jpg" alt="Gallery Image 1"></div>
+        <div class="gallery-item animate-on-scroll"><img src="assets/images/j3.jpg" alt="Gallery Image 2"></div>
+        <div class="gallery-item animate-on-scroll"><img src="assets/images/j4.jpg" alt="Gallery Image 3"></div>
+        <div class="gallery-item animate-on-scroll"><img src="assets/images/j5.jpg" alt="Gallery Image 4"></div>
     </div>
 </section>
 
@@ -952,7 +903,8 @@
     <div class="contact-info animate-on-scroll">
         <p><i class="fa-solid fa-envelope"></i> Email: <a href="mailto:jayanidissanayake15@gmail.com">jayanidissanayake15@gmail.com</a></p>
         <p><i class="fa-solid fa-phone"></i> Phone: <a href="tel:+94704834552">+94 70 483 4552</a></p>
-        <p><i class="fa-brands fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/94704834552" target="_blank">+94 70 483 4552</a></p>
+        <p><i class="fa-brands fa-whatsapp"></i> WhatsApp: <a href="httpsServices
+://wa.me/94704834552" target="_blank">+94 70 483 4552</a></p>
         <p><i class="fa-brands fa-linkedin"></i> LinkedIn: <a href="#" target="_blank">linkedin.com/in/jayani-dissanayake</a></p>
         <p><i class="fa-brands fa-github"></i> GitHub: <a href="https://github.com/jayanidissanayake15" target="_blank">github.com/jayanidissanayake15</a></p>
     </div>
@@ -963,10 +915,8 @@
 </footer>
 
 <script>
-    // Set the current year for the footer
     document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-    // Script for scroll animations
     const elements = document.querySelectorAll('.animate-on-scroll');
     const observerOptions = {
         root: null,
@@ -989,30 +939,26 @@
         observer.observe(el);
     });
 
-    // Reset animation on home link click
     function resetAnimation() {
         elements.forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
-            el.style.animation = 'none'; // Clear the animation class
-            observer.observe(el); // Re-observe the elements
+            el.style.animation = 'none';
+            observer.observe(el);
         });
     }
 
-    // Load hero image with animation (simulated)
     const heroImage = document.querySelector('.hero-image');
     setTimeout(() => {
         heroImage.classList.add('loaded');
     }, 500);
 
-    /* --- NEW: Mobile Menu Toggle Functionality --- */
     const navLinks = document.getElementById('navLinks');
     const menuToggle = document.querySelector('.menu-toggle');
 
     menuToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
 
-        // Change icon between bars and times (close)
         const icon = menuToggle.querySelector('i');
         if (navLinks.classList.contains('active')) {
             icon.classList.remove('fa-bars');
@@ -1023,12 +969,10 @@
         }
     });
 
-    // Close menu when a link is clicked (for better UX on mobile)
     navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             if (navLinks.classList.contains('active')) {
                 navLinks.classList.remove('active');
-                // Reset icon
                 menuToggle.querySelector('i').classList.remove('fa-xmark');
                 menuToggle.querySelector('i').classList.add('fa-bars');
             }
@@ -1036,6 +980,5 @@
     });
 
 </script>
-
 </body>
 </html>
