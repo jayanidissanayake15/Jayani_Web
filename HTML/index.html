@@ -49,7 +49,7 @@
             100% { transform: translateY(0); }
         }
         @keyframes fadeInOnScroll {
-            0% { opacity: 0; transform: translateY(30px); }
+            0% { opacity: 0; transform: translateY(30px); filter: blur(0); }
             100% { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
         /* Custom Animation for About Me section */
@@ -118,6 +118,21 @@
         .nav-links a:hover {
             color: var(--primary-blue);
             border-bottom: 2px solid var(--primary-blue);
+        }
+
+        /* NEW: Styles for the mobile menu toggle button */
+        .menu-toggle {
+            display: none; /* Hidden by default on desktop */
+            background: none;
+            border: none;
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 101; /* Ensure it's above the menu */
+            transition: transform 0.3s;
+        }
+        .menu-toggle:active {
+            transform: scale(0.9);
         }
 
         /* ===================================================
@@ -524,6 +539,49 @@
             .navbar {
                 padding: 15px 20px;
             }
+            /* Show menu toggle icon on mobile */
+            .menu-toggle {
+                display: block;
+            }
+
+            /* Stack nav links vertically and hide them initially */
+            .nav-links {
+                display: none; /* Hide by default */
+                flex-direction: column;
+                position: absolute;
+                top: 70px; /* Position below the header */
+                right: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.98);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+                padding: 20px 0;
+                border-top: 1px solid var(--secondary-accent);
+                z-index: 99;
+                /* Add a smooth transition for opening/closing */
+                transition: all 0.3s ease-in-out;
+                transform: translateY(-100%); /* Initial off-screen position */
+            }
+
+            .nav-links.active {
+                display: flex; /* Show when 'active' class is added */
+                transform: translateY(0); /* Slide into view */
+            }
+
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+                padding: 5px 0;
+            }
+            .nav-links a {
+                display: block;
+                padding: 10px 20px;
+                border-bottom: none;
+                font-size: 1.1rem;
+            }
+            .nav-links a:hover {
+                background: var(--light-bg);
+            }
+
             .hero {
                 flex-direction: column;
                 padding-top: 100px;
@@ -573,7 +631,7 @@
         <a href="#hero" onclick="resetAnimation();">
             <img src="assets/images/jlogo.png" alt="JYN Logo" class="logo-img">
         </a>
-        <ul class="nav-links">
+        <ul class="nav-links" id="navLinks">
             <li><a href="#hero" onclick="resetAnimation();"><i class="fa-solid fa-house-chimney"></i> Home</a></li>
             <li><a href="#about-split"><i class="fa-solid fa-user-tie"></i> About</a></li>
             <li><a href="#streams"><i class="fa-solid fa-compass"></i> Interests</a></li>
@@ -585,6 +643,9 @@
             <li><a href="#gallery"><i class="fa-solid fa-palette"></i> Gallery</a></li>
             <li><a href="#contact"><i class="fa-solid fa-paper-plane"></i> Contact</a></li>
         </ul>
+        <button class="menu-toggle" aria-label="Toggle navigation menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
     </nav>
 </header>
 <section id="hero" class="hero">
@@ -735,17 +796,11 @@
         </div>
 
         <div class="project-card animate-on-scroll">
-            <span class="card-meta">JavaFX | MySQL | UI/UX | MVC | Layered Architecture</span>
-            <h3>Hotel Management System (Layered Architecture)</h3>
-            <p>
-                A full-featured desktop application designed to streamline hotel operations through a clean and modular layered architecture.
-                This system separates concerns across DAO, Service, and Controller layers to ensure maintainability and scalability.
-                Key modules include room management, booking, employee management, maintenance, and reporting — all integrated with a MySQL database
-                and an intuitive JavaFX-based UI.
-            </p>
+            <span class="card-meta">JavaFX | MySQL | UI/UX</span>
+            <h3>Hotel Management System (Layered Architecture) </h3>
+            <p>Advanced system demonstrating mastery in separating concerns across DAO, Service, and Controller layers, enabling maintainable, scalable enterprise applications with comprehensive reporting capabilities.</p>
             <a href="https://github.com/jayanidissanayake15/Holiday-Home-Management-System---Layerd" class="btn" target="_blank">View on GitHub</a>
         </div>
-
 
         <div class="project-card animate-on-scroll">
             <span class="card-meta">Hibernate | ORM Concepts | Layered Architecture | JavaFX | Scene Builder</span>
@@ -895,6 +950,36 @@
     setTimeout(() => {
         heroImage.classList.add('loaded');
     }, 500);
+
+    /* --- NEW: Mobile Menu Toggle Functionality --- */
+    const navLinks = document.getElementById('navLinks');
+    const menuToggle = document.querySelector('.menu-toggle');
+
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+
+        // Change icon between bars and times (close)
+        const icon = menuToggle.querySelector('i');
+        if (navLinks.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-xmark');
+        } else {
+            icon.classList.remove('fa-xmark');
+            icon.classList.add('fa-bars');
+        }
+    });
+
+    // Close menu when a link is clicked (for better UX on mobile)
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                // Reset icon
+                menuToggle.querySelector('i').classList.remove('fa-xmark');
+                menuToggle.querySelector('i').classList.add('fa-bars');
+            }
+        });
+    });
 
 </script>
 
