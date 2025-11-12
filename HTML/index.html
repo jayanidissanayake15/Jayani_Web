@@ -472,6 +472,48 @@
             transform: scale(1.1) translateY(-5px);
             filter: drop-shadow(0 0 10px var(--primary-blue));
         }
+        /* ===================================================
+   NEW ANIMATIONS
+   =================================================== */
+        @keyframes pulse-glow {
+            0% { transform: scale(1); box-shadow: 0 0 5px rgba(0, 166, 255, 0.5); }
+            50% { transform: scale(1.05); box-shadow: 0 0 15px var(--secondary-accent); }
+            100% { transform: scale(1); box-shadow: 0 0 5px rgba(0, 166, 255, 0.5); }
+        }
+
+        /* ===================================================
+           CARD ID LABEL STYLES
+           =================================================== */
+        .card-id {
+            float: right; /* Position to the right */
+            background: var(--secondary-accent);
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-top: -10px; /* Pull it up slightly */
+            animation: pulse-glow 2s infinite ease-in-out; /* Apply new animation */
+            /* Ensure it doesn't wrap with h3 */
+            margin-left: 10px;
+        }
+
+        /* Ensure project cards clear the float for proper height calculation */
+        .project-card::after, .assign-card::after, .activity-card::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Position for the button at the very bottom */
+        .project-card .btn, .assign-card .btn, .activity-card .btn {
+            /* The float: right is already defined in your original CSS,
+               but we ensure it clears the space */
+            margin-top: 15px;
+            margin-bottom: 0;
+            float: right; /* Maintain right alignment */
+        }
 
         /* ===================================================
            7. GALLERY & CONTACT
@@ -847,19 +889,31 @@
 </section>
 
 <section id="assignments" class="assignments">
-    <h2 class="section-title animate-on-scroll"><i class="fa-solid fa-list-check"></i> Exercises & Assignments</h2>
-    <div class="assign-container">
+    <h2 class="section-title animate-on-scroll"><i class="fa-solid fa-list-check"></i>Assignments</h2>
+    <div>
         <div class="assign-card animate-on-scroll">
-            <span class="card-meta">Java | Data Structures | Algorithms</span>
-            <h3>Data Structures Challenge</h3>
-            <p>Implemented and tested core data structures (like Linked Lists and Hash Maps) from scratch to demonstrate fundamental algorithmic understanding in Java.</p>
-            <a href="#" class="btn">View Source</a>
+            <span class="card-meta">HTML | CSS | Frontend</span>
+            <h3>CSS Selectors Practice</h3>
+            <p>Practiced styling web pages using a variety of CSS selectors: element, class, ID, group, descendant, child, sibling, and attribute selectors. Focused on writing organized, maintainable, and precise CSS.</p>
+            <a href="https://github.com/jayanidissanayake15/Assignment_01" class="btn">View Source</a>
         </div>
         <div class="assign-card animate-on-scroll">
             <span class="card-meta">HTML | CSS | Responsive Design</span>
-            <h3>CSS Grid & Flexbox Layouts</h3>
-            <p>A set of responsive web layout exercises focusing on mastery of modern CSS techniques for adaptable and aesthetically pleasing designs across all device sizes.</p>
-            <a href="#" class="btn">View Demo</a>
+            <h3>CSS Positioning & Layout Practice</h3>
+            <p>Practiced designing web pages using various CSS positioning techniques, including Absolute, Relative, Fixed, and Sticky positions. Applied the Box Model and Grid Layout to create multiple flexible layouts that maintain consistency across content changes and device sizes.</p>
+            <a href="https://github.com/jayanidissanayake15/Assignment_02" class="btn">View Source</a>
+        </div>
+        <div class="assign-card animate-on-scroll">
+            <span class="card-meta">HTML | CSS | Animations</span>
+            <h3>CSS Animations & Transitions</h3>
+            <p>Implemented a variety of animations and transitions using pure HTML and CSS, including interactive navigation effects, rotating elements, loaders, image sliders, and moving objects to enhance user experience and visual appeal.</p>
+            <a href="https://github.com/jayanidissanayake15/Assignment_03" class="btn">View Source</a>
+        </div>
+        <div class="assign-card animate-on-scroll">
+            <span class="card-meta">HTML | CSS | Practical Exercises</span>
+            <h3>CSS Practice Cases</h3>
+            <p>Completed multiple CSS practice exercises focusing on layout, styling, and responsive design. Each case (01–06) explores different techniques including positioning, Flexbox, Grid, and animations to strengthen practical front-end development skills.</p>
+            <a href="https://github.com/jayanidissanayake15/Assignment_04" class="btn">View Source</a>
         </div>
     </div>
 </section>
