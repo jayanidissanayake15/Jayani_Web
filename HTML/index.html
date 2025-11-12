@@ -269,7 +269,8 @@
         }
         .edu-container, .project-container, .assign-container, .streams-container, .experience-container, .activities-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            /* UPDATED: Increased min width for wider edu cards */
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
         }
 
@@ -279,10 +280,18 @@
             padding: 30px;
             border-radius: 15px;
             text-align: left;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            /* --- PROJECT CARD STYLES (3px border, shadow, hover effect) --- */
+            border: 3px solid var(--primary-blue); /* Added 3px base border */
+            box-shadow: 0 5px 15px rgba(4, 23, 80, 0.1); /* Deeper initial shadow */
             transition: 0.4s ease-in-out;
             opacity: 0;
+            /* ADDED MIN HEIGHT for uniformity/increased height */
+            min-height: 250px;
+        }
+
+        /* ADDED: Styles specific to Education Cards */
+        .edu-card {
+            border: 5px solid var(--primary-blue); /* ADDED 5PX DARK BORDER */
         }
 
         /* ADDED: Dark border for Stream Cards */
@@ -293,18 +302,18 @@
         .edu-card:hover, .project-card:hover, .assign-card:hover, .stream-card:hover, .work-card:hover, .activity-card:hover {
             box-shadow: 0 10px 30px rgba(4, 23, 80, 0.4);
             transform: translateY(-10px);
-            border-color: var(--primary-blue);
+            border-color: var(--secondary-accent); /* Border color change on hover */
         }
 
         .edu-card h3, .project-card h3, .assign-card h3, .stream-card h3, .work-card h3, .activity-card h3 {
-            color: var(--text-dark);
+            color: var(--text-dark); /* ENSURED DARK FONT */
             font-size: 1.5rem;
             margin-bottom: 10px;
             border-bottom: 2px solid rgba(176, 176, 176, 0.3);
             padding-bottom: 5px;
         }
         .edu-card p, .project-card p, .assign-card p, .stream-card p, .work-card p, .activity-card p {
-            color: var(--text-muted);
+            color: var(--text-dark); /* ENSURED DARK FONT */
             margin-top: 5px;
         }
         .card-meta {
@@ -314,16 +323,35 @@
             display: block;
             margin-bottom: 5px;
         }
+
+        /* --- PROJECT/ASSIGNMENT BUTTON STYLES --- */
         .project-card a, .assign-card a {
-            color: var(--primary-blue);
+            color: #fff; /* Button text color is white */
             text-decoration: none;
             font-weight: 600;
+            /* Display change for float compatibility and right alignment */
             display: inline-block;
             margin-top: 15px;
             transition: color 0.3s;
         }
+
+        /* New rule: Aligns the button to the right */
+        .project-card .btn {
+            float: right;
+            margin-top: 15px;
+            margin-bottom: 0;
+        }
+
+        /* Clears the float within the card container */
+        .project-card::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
         .project-card a:hover, .assign-card a:hover {
-            color: var(--secondary-accent);
+            /* The hover for the .btn is defined higher up in .btn:hover */
+            color: #fff; /* Keep text white */
         }
 
         /* --- UPDATED ABOUT ME SECTION STYLES (Split Layout) --- */
@@ -613,7 +641,7 @@
 ---
 
 <section id="streams" class="streams">
-    <h2 class="section-title animate-on-scroll"><i class="fa-solid fa-compass"></i> Preferred Streams/Interests</h2>
+    <h2 class="section-title animate-on-scroll"><i class="fa-solid fa-compass"></i> Interests</h2>
     <div class="streams-container">
         <div class="stream-card animate-on-scroll">
             <h3>Web Development (Front-End)</h3>
@@ -658,152 +686,217 @@
     <h2 class="section-title animate-on-scroll"><i class="fa-solid fa-graduation-cap"></i> Educational Background</h2>
     <div class="edu-container">
         <div class="edu-card animate-on-scroll">
-            <span class="card-meta">2021 – Present</span>
-            <h3>BSc in Software Engineering</h3>
-            <p>Institute of XYZ — Focused on Object-Oriented Design and Database Systems, covering Java, Data Structures, and Web Fundamentals.</p>
+            <span class="card-meta">2008 - 2018</span>
+            <h3>B/ Welimada Vijaya Vidyalaya</h3>
+            <p>Completed studies from Grade 1 to Grade 11, leading up to the G.C.E. Ordinary Level examinations.</p>
         </div>
         <div class="edu-card animate-on-scroll">
-            <span class="card-meta">2019 – 2020</span>
-            <h3>Diploma in Business Management</h3>
-            <p>ABC Institute — Developed strong management accounting, reporting, and problem-solving abilities vital for systems analysis.</p>
+            <span class="card-meta">2019 – 2021</span>
+            <h3>B/ Bandarawela Central College</h3>
+            <p>G.C.E. Advanced Level studies in the Physical Science stream.</p>
         </div>
+
+        <div class="edu-card animate-on-scroll">
+            <span class="card-meta">2022 – 2023</span>
+            <h3>DP Education Coding School</h3>
+            <p>Completed comprehensive training in software development, focusing on programming fundamentals and practical coding skills.</p>
+        </div>
+        <div class="edu-card animate-on-scroll">
+            <span class="card-meta">2023 – 2024</span>
+            <h3>Ceylon Pharmacy College</h3>
+            <p>Completed a Diploma in Pharmacy, gaining knowledge in pharmaceutical science, drug formulation, and healthcare practices.</p>
+        </div>
+        <div class="edu-card animate-on-scroll">
+            <span class="card-meta">2024 – Present</span>
+            <h3>IJSE Panadura</h3>
+            <p>Currently pursuing the GDSE program, focusing on software development, programming, and IT fundamentals.</p>
+        </div>
+
     </div>
 </section>
 
 ---
-
 <section id="projects" class="projects">
     <h2 class="section-title animate-on-scroll"><i class="fa-solid fa-folder-open"></i> Featured Course Projects</h2>
     <div class="project-container">
-        <div class="project-card animate-on-scroll">
-            <span class="card-meta">ORM Concepts | Layered Architecture | JavaFX | Scene Builder</span>
-            <h3>Driving School Management System</h3>
-            <p>Designed and implemented a full-scale application utilizing **ORM principles** for robust data management, built with a strict **Layered Architecture** for scalability, and featuring a professional user interface created using **JavaFX and Scene Builder**.</p>
-            <a href="#"><i class="fa-solid fa-up-right-from-square"></i> View Project Source</a>
-        </div>
-        <div class="project-card animate-on-scroll">
-            <span class="card-meta">JavaFX | MySQL | UI/UX</span>
-            <h3>Hotel Management System (Layered Architecture) </h3>
-            <p>Advanced system showcasing expertise in separating concerns (DAO, Service, Controller) for maintainable and scalable enterprise application design, including detailed reporting.</p>
-            <a href="#"><i class="fa-solid fa-up-right-from-square"></i> View Project Documentation</a>
-        </div>
-        <div class="project-card animate-on-scroll">
-            <span class="card-meta">JavaFX | MVC Pattern</span>
-            <h3>Hotel Management System (MVC)</h3>
-            <p>Implemented the Model-View-Controller design pattern for managing rooms, employees, and bookings, focusing on clear separation of data, logic, and presentation.</p>
-            <a href="#"><i class="fa-solid fa-up-right-from-square"></i> View Case Study</a>
-        </div>
+
         <div class="project-card animate-on-scroll">
             <span class="card-meta">Core Java | Console</span>
             <h3>Library Management System</h3>
-            <p>A foundational project demonstrating command-line logic for managing books, member records, and loan transactions using pure object-oriented programming principles.</p>
-            <a href="#"><i class="fa-solid fa-up-right-from-square"></i> View Repository</a>
+            <p>A foundational project showcasing a command-line system for managing books, member records, and loan transactions, built entirely with object-oriented programming principles. It seamlessly integrates data, logic, and presentation to provide a clear and functional experience.</p>
+            <a href="https://github.com/jayanidissanayake15/Library-Management-System-CLI" class="btn" target="_blank">View on GitHub</a>
         </div>
+
+        <div class="project-card animate-on-scroll">
+            <span class="card-meta">JavaFX | MVC Pattern</span>
+            <h3>Hotel Management System (MVC)</h3>
+            <p>Applied the Model-View-Controller design pattern to efficiently manage rooms, employees, and bookings, ensuring a clean separation between data, business logic, and user interface for maintainable and scalable applications.</p>
+            <a href="https://github.com/jayanidissanayake15/Hotel-Managment-by-MVC" class="btn" target="_blank">View on GitHub</a>
+        </div>
+
+        <div class="project-card animate-on-scroll">
+            <span class="card-meta">JavaFX | MySQL | UI/UX | MVC | Layered Architecture</span>
+            <h3>Hotel Management System (Layered Architecture)</h3>
+            <p>
+                A full-featured desktop application designed to streamline hotel operations through a clean and modular layered architecture.
+                This system separates concerns across DAO, Service, and Controller layers to ensure maintainability and scalability.
+                Key modules include room management, booking, employee management, maintenance, and reporting — all integrated with a MySQL database
+                and an intuitive JavaFX-based UI.
+            </p>
+            <a href="https://github.com/jayanidissanayake15/Holiday-Home-Management-System---Layerd" class="btn" target="_blank">View on GitHub</a>
+        </div>
+
+
+        <div class="project-card animate-on-scroll">
+            <span class="card-meta">Hibernate | ORM Concepts | Layered Architecture | JavaFX | Scene Builder</span>
+            <h3>Driving School Management System</h3>
+            <p>
+                Designed and implemented a comprehensive application using <b>Hibernate ORM</b> for efficient data persistence and management.
+                Built with a clean layered architecture to ensure scalability and maintainability, featuring an intuitive and professional user interface developed with <b>JavaFX</b> and <b>Scene Builder</b>.
+            </p>
+            <a href="https://github.com/jayanidissanayake15/4th-Caurse-Work-ORM" class="btn" target="_blank">View on GitHub</a>
+        </div>
+
+        <div class="project-card animate-on-scroll">
+            <span class="card-meta">Java | Socket Programming | Network Programming | JavaFX</span>
+            <h3>Multi-Client Chat Application</h3>
+            <p>
+                A simple yet powerful multi-client chat room built using <b>Java Socket Programming</b> and <b>JavaFX</b>.
+                This project showcases the core concepts of <b>network communication</b>, <b>threading</b>, and <b>GUI development</b>,
+                enabling multiple users to connect and communicate seamlessly through a single server.
+            </p>
+            <a href="https://github.com/jayanidissanayake15/Network_Programming_main_Exam" class="btn" target="_blank">View on GitHub</a>
+        </div>
+
+        <div class="project-card animate-on-scroll">
+            <span class="card-meta">HTML | CSS | JavaScript</span>
+            <h3>Personal Portfolio Website</h3>
+            <p>
+                A fully responsive and modern personal portfolio designed from scratch using pure HTML, CSS, and JavaScript — without any frameworks.
+                This project highlights UI/UX design principles, responsive layouts, and custom styling techniques to professionally showcase identity, skills, and achievements across all devices.
+            </p>
+            <a href="https://github.com/jayanidissanayake15/Jayani_Web" class="btn" target="_blank">View on GitHub</a>
+        </div>
+
+        <div class="project-card animate-on-scroll">
+            <span class="card-meta">HTML | CSS | JavaScript | jQuery | Bootstrap | MVC</span>
+            <h3>Single Page POS System</h3>
+            <p>
+                A fully functional Single Page Point of Sale (POS) system developed using HTML, CSS, JavaScript, jQuery, and Bootstrap.
+                Designed with the MVC pattern and responsive layout principles, this application enables smooth management of customers, items, and orders — including login/logout, CRUD operations, and dynamic order processing.
+            </p>
+            <a href="https://github.com/jayanidissanayake15/POS_System" class="btn" target="_blank">View on GitHub</a>
+        </div>
+
     </div>
 </section>
-
----
 
 <section id="assignments" class="assignments">
-    <h2 class="section-title animate-on-scroll"><i class="fa-solid fa-clipboard-list"></i> Exercises & Skills</h2>
+    <h2 class="section-title animate-on-scroll"><i class="fa-solid fa-list-check"></i> Exercises & Assignments</h2>
     <div class="assign-container">
         <div class="assign-card animate-on-scroll">
-            <span class="card-meta">JavaFX | MySQL</span>
-            <h3>CRUD Application Development</h3>
-            <p>Focused lab exercise to demonstrate the ability to implement Create, Read, Update, and Delete operations effectively for simple employee record management.</p>
-            <a href="#"><i class="fa-solid fa-code"></i> View Code Snippet</a>
+            <span class="card-meta">Java | Data Structures | Algorithms</span>
+            <h3>Data Structures Challenge</h3>
+            <p>Implemented and tested core data structures (like Linked Lists and Hash Maps) from scratch to demonstrate fundamental algorithmic understanding in Java.</p>
+            <a href="#" class="btn">View Source</a>
         </div>
         <div class="assign-card animate-on-scroll">
-            <span class="card-meta">HTML | CSS</span>
-            <h3>Responsive Portfolio Website (Assignment 01)</h3>
-            <p>The development of this website itself, showcasing foundational skills in modern, responsive web layout and custom styling techniques.</p>
-            <a href="#"><i class="fa-solid fa-code"></i> View Source Code</a>
+            <span class="card-meta">HTML | CSS | Responsive Design</span>
+            <h3>CSS Grid & Flexbox Layouts</h3>
+            <p>A set of responsive web layout exercises focusing on mastery of modern CSS techniques for adaptable and aesthetically pleasing designs across all device sizes.</p>
+            <a href="#" class="btn">View Demo</a>
         </div>
     </div>
 </section>
 
 ---
-
 <section id="activities" class="activities">
-    <h2 class="section-title animate-on-scroll"><i class="fa-solid fa-person-running"></i> Activities & Extracurriculars</h2>
+    <h2 class="section-title animate-on-scroll"><i class="fa-solid fa-person-running"></i> Extracurricular Activities</h2>
     <div class="activities-container">
         <div class="activity-card animate-on-scroll">
-            <span class="card-meta">2023</span>
-            <h3>University Student Community Member</h3>
-            <p>Organized weekly workshops on algorithms and data structures, and managed logistics for inter-departmental coding competitions.</p>
+            <span class="card-meta">Leadership | Teamwork</span>
+            <h3>GDSE Student Union Member</h3>
+            <p>Active member of the Student Union, involved in organizing educational and networking events, fostering a collaborative learning environment among peers.</p>
         </div>
         <div class="activity-card animate-on-scroll">
-            <span class="card-meta">2022 – Present</span>
-            <h3>Lorem</h3>
-            <p>Provided basic computer literacy and internet safety training to local community members, promoting digital inclusion.</p>
+            <span class="card-meta">Creativity | Design</span>
+            <h3>Digital Art & Graphic Design</h3>
+            <p>Engaged in digital art and graphic design projects, applying UI/UX principles to practical design work using tools like Photoshop and Figma.</p>
         </div>
     </div>
 </section>
 
 ---
-
 <section id="gallery" class="gallery">
-    <h2 class="section-title animate-on-scroll"><i class="fa-solid fa-images"></i> Gallery</h2>
-    <p style="margin-bottom: 30px; color: var(--text-muted);"></p>
+    <h2 class="section-title animate-on-scroll"><i class="fa-solid fa-palette"></i> Design Gallery & Concepts</h2>
     <div class="gallery-grid">
-        <img class="animate-on-scroll" src="https://placehold.co/400x300/0f172a/4169E1?text=Hotel+UI+Screen" alt="Hotel Management System UI Screenshot" onerror="this.src='https://placehold.co/400x300/0f172a/4169E1?text=Hotel+UI+Screen'">
-        <img class="animate-on-scroll" src="https://placehold.co/400x300/0f172a/FFA500?text=Driving+School+UI" alt="Driving School Management UI Screenshot" onerror="this.src='https://placehold.co/400x300/0f172a/FFA500?text=Driving+School+UI'">
-        <img class="animate-on-scroll" src="https://placehold.co/400x300/0f172a/008000?text=Layered+Architecture+Diagram" alt="Layered Architecture Diagram" onerror="this.src='https://placehold.co/400x300/0f172a/008000?text=Layered+Architecture+Diagram'">
-        <img class="animate-on-scroll" src="https://placehold.co/400x300/0f172a/FF0000?text=MySQL+Schema" alt="MySQL Database Schema Screenshot" onerror="this.src='https://placehold.co/400x300/0f172a/FF0000?text=MySQL+Schema'">
+        <img src="https://placehold.co/220x200/041750/00a6ff?text=UI+Concept+1" alt="UI Concept 1" class="animate-on-scroll">
+        <img src="https://placehold.co/220x200/041750/00a6ff?text=Web+Layout" alt="Web Layout" class="animate-on-scroll">
+        <img src="https://placehold.co/220x200/041750/00a6ff?text=App+Mockup" alt="App Mockup" class="animate-on-scroll">
+        <img src="https://placehold.co/220x200/041750/00a6ff?text=Design+Poster" alt="Design Poster" class="animate-on-scroll">
     </div>
 </section>
 
 ---
-
 <section id="contact" class="contact">
     <h2 class="section-title animate-on-scroll"><i class="fa-solid fa-paper-plane"></i> Get In Touch</h2>
     <div class="contact-info animate-on-scroll">
-        <p><i class="fa-solid fa-location-dot"></i> Location: Sri Lanka</p>
-        <p><i class="fa-solid fa-phone"></i> Phone: <a href="tel:+94704834552">(+94) 70 483 4552</a></p>
         <p><i class="fa-solid fa-envelope"></i> Email: <a href="mailto:jayanidissanayake15@gmail.com">jayanidissanayake15@gmail.com</a></p>
-        <p><i class="fa-brands fa-github"></i> GitHub: <a href="https://github.com/jayanidissanayake15" target="_blank">jayanidissanayake15</a></p>
+        <p><i class="fa-solid fa-phone"></i> Phone: <a href="tel:+94704834552">+94 70 483 4552</a></p>
+        <p><i class="fa-brands fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/94704834552" target="_blank">+94 70 483 4552</a></p>
+        <p><i class="fa-brands fa-linkedin"></i> LinkedIn: <a href="#" target="_blank">linkedin.com/in/jayani-dissanayake</a></p>
+        <p><i class="fa-brands fa-github"></i> GitHub: <a href="https://github.com/jayanidissanayake15" target="_blank">github.com/jayanidissanayake15</a></p>
     </div>
 </section>
 
 <footer>
-    <p>&copy; 2025 Jayani Dissanayake. All Rights Reserved. Built with <i class="fa-solid fa-heart"></i> and pure HTML/CSS.</p>
+    &copy; <span id="currentYear"></span> Jayani Dissanayake. All rights reserved. | Crafted with <i class="fa-solid fa-heart"></i>.
 </footer>
 
 <script>
-    // Placeholder function for Hero reset animation (called from navigation)
-    function resetAnimation() {
-        console.log("Animation reset requested.");
-    }
+    // Set the current year for the footer
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-    // Intersection Observer for fade-in animations
-    const observer = new IntersectionObserver((entries) => {
+    // Script for scroll animations
+    const elements = document.querySelectorAll('.animate-on-scroll');
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.animation = `fadeInOnScroll 0.8s ease-out forwards`;
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                entry.target.style.animation = 'fadeInOnScroll 1s ease-out forwards';
                 observer.unobserve(entry.target);
             }
         });
-    }, {
-        threshold: 0.1, // Trigger when 10% of the item is visible
-        rootMargin: "0px 0px -50px 0px" // Start observing slightly before element hits view
+    }, observerOptions);
+
+    elements.forEach(el => {
+        observer.observe(el);
     });
 
-    // Target elements to animate
-    document.querySelectorAll('.animate-on-scroll').forEach(element => {
-        observer.observe(element);
-    });
+    // Reset animation on home link click
+    function resetAnimation() {
+        elements.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.animation = 'none'; // Clear the animation class
+            observer.observe(el); // Re-observe the elements
+        });
+    }
 
-    // Hero image load animation
-    document.addEventListener("DOMContentLoaded", function() {
-        const heroImage = document.querySelector('.hero-image');
-        if (heroImage) {
-            // Give a slight delay for better visual effect
-            setTimeout(() => {
-                heroImage.classList.add('loaded');
-            }, 200);
-        }
-    });
+    // Load hero image with animation (simulated)
+    const heroImage = document.querySelector('.hero-image');
+    setTimeout(() => {
+        heroImage.classList.add('loaded');
+    }, 500);
 
 </script>
+
 </body>
 </html>
