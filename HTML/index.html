@@ -490,32 +490,33 @@
         }
         .contact-info {
             text-align: left;
-            max-width: 450px;
+            max-width: 700px;
             margin: auto;
             line-height: 2.5;
             background: var(--card-bg);
             padding: 30px;
             border-radius: 15px;
-            border: 1px solid var(--primary-blue);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+
+            /* UPDATED: 5px dark blue border */
+            border: 5px solid var(--primary-blue);
+
+            /* Initial shadow for the animation */
+            box-shadow: 0 5px 15px rgba(4, 23, 80, 0.1);
+
             font-size: 1.1rem;
             opacity: 0;
+
+            /* Added transition for smooth hover effects */
+            transition: all 0.4s ease-in-out;
         }
-        .contact-info a {
-            color: var(--text-dark);
-            transition: color 0.3s;
-            margin-left: 10px;
+
+        /* NEW: Hover effect for animated shadow and slight lift */
+        .contact-info:hover {
+            box-shadow: 0 10px 30px rgba(4, 23, 80, 0.4); /* Deeper, more prominent shadow */
+            transform: translateY(-5px); /* Subtle lift effect */
+            border-color: var(--secondary-accent); /* Optional: Change border color on hover */
         }
-        .contact-info a:hover {
-            color: var(--primary-blue);
-            text-decoration: underline;
-        }
-        .contact-info i {
-            width: 30px;
-            text-align: center;
-            color: var(--primary-blue);
-            font-size: 1.3rem;
-        }
+
         footer {
             background: var(--light-bg);
             text-align: center;
@@ -901,12 +902,38 @@ photoshop.com/en" target="_blank" rel="noreferrer"> <img src="https://www.vector
 <section id="contact" class="contact">
     <h2 class="section-title animate-on-scroll"><i class="fa-solid fa-paper-plane"></i> Get In Touch</h2>
     <div class="contact-info animate-on-scroll">
-        <p><i class="fa-solid fa-envelope"></i> Email: <a href="mailto:jayanidissanayake15@gmail.com">jayanidissanayake15@gmail.com</a></p>
-        <p><i class="fa-solid fa-phone"></i> Phone: <a href="tel:+94704834552">+94 70 483 4552</a></p>
-        <p><i class="fa-brands fa-whatsapp"></i> WhatsApp: <a href="httpsServices
-://wa.me/94704834552" target="_blank">+94 70 483 4552</a></p>
-        <p><i class="fa-brands fa-linkedin"></i> LinkedIn: <a href="#" target="_blank">linkedin.com/in/jayani-dissanayake</a></p>
-        <p><i class="fa-brands fa-github"></i> GitHub: <a href="https://github.com/jayanidissanayake15" target="_blank">github.com/jayanidissanayake15</a></p>
+
+        <p class="contact-intro">
+            I'm currently seeking new opportunities and open to collaborating on innovative projects.
+            Feel free to connect directly via email or reach out on any of my professional channels below.
+        </p>
+<br>
+        <ul class="contact-details-list">
+            <li>
+                <i class="fa-solid fa-envelope"></i>
+                <strong>Email:  </strong>
+                <a href="mailto:jayanidissanayake15@gmail.com">jayanidissanayake15@gmail.com</a>
+            </li>
+
+            <li>
+                <i class="fa-brands fa-linkedin"></i>
+                <strong>LinkedIn:  </strong>
+                <a href="https://www.linkedin.com/in/jayani-dissanayake-039291396?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank">linkedin.com/in/jayani-dissanayake</a>
+            </li>
+
+            <li>
+                <i class="fa-brands fa-github"></i>
+                <strong>GitHub:  </strong>
+                <a href="https://github.com/jayanidissanayake15" target="_blank">github.com/jayanidissanayake15</a>
+            </li>
+
+            <li>
+                <i class="fa-solid fa-phone"></i>
+                <strong>WhatsApp:  </strong>
+                <a href="tel:+94704834552">+94 70 483 4552</a>
+            </li>
+        </ul>
+
     </div>
 </section>
 
