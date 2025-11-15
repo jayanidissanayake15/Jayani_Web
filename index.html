@@ -7,609 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="HTML/lib/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="HTML/lib/normalize.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-        :root {
-            --primary-blue: #041750;
-            --secondary-accent: #00a6ff;
-            --light-bg: #F7FAFC;
-            --card-bg: #ffffff;
-            --text-dark: #1f2937;
-            --text-muted: #6b7280;
-        }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--light-bg);
-            color: var(--text-dark);
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-
-        @keyframes rise-in {
-            0% { opacity: 0; transform: translateY(20px); filter: blur(5px); }
-            100% { opacity: 1; transform: translateY(0); filter: blur(0); }
-        }
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0); }
-        }
-        @keyframes fadeInOnScroll {
-            0% { opacity: 0; transform: translateY(30px); filter: blur(0); }
-            100% { opacity: 1; transform: translateY(0); filter: blur(0); }
-        }
-        @keyframes text-shift-in {
-            0% { opacity: 0; transform: translateY(15px); filter: blur(3px); }
-            100% { opacity: 1; transform: translateY(0); filter: blur(0); }
-        }
-        @keyframes pulse-border {
-            0% {
-                box-shadow: 0 0 10px var(--secondary-accent), 0 0 30px rgba(0, 166, 255, 0.4);
-                border-color: var(--secondary-accent);
-            }
-            50% {
-                box-shadow: 0 0 25px var(--secondary-accent), 0 0 50px rgba(0, 166, 255, 0.8);
-                border-color: var(--secondary-accent);
-            }
-            100% {
-                box-shadow: 0 0 10px var(--secondary-accent), 0 0 30px rgba(0, 166, 255, 0.4);
-                border-color: var(--secondary-accent);
-            }
-        }
-        @keyframes pulse-glow {
-            0% { transform: scale(1); box-shadow: 0 0 5px rgba(0, 166, 255, 0.5); }
-            50% { transform: scale(1.05); box-shadow: 0 0 15px var(--secondary-accent); }
-            100% { transform: scale(1); box-shadow: 0 0 5px rgba(0, 166, 255, 0.5); }
-        }
-        .animate-on-scroll {
-            opacity: 0;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 100px;
-            background: rgba(255, 255, 255, 0.95);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-        }
-        .logo {
-            color: var(--primary-blue);
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-        .logo-img {
-            height: 60px;
-            width: auto;
-            transition: transform 0.3s;
-        }
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 30px;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-dark);
-            padding: 5px 0;
-            transition: color 0.3s, border-bottom 0.3s;
-            font-weight: 500;
-            position: relative;
-        }
-        .nav-links a:hover {
-            color: var(--primary-blue);
-            border-bottom: 2px solid var(--primary-blue);
-        }
-
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--primary-blue);
-            font-size: 1.8rem;
-            cursor: pointer;
-            z-index: 101;
-            transition: transform 0.3s;
-        }
-        .menu-toggle:active {
-            transform: scale(0.9);
-        }
-
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: space-evenly;
-            padding: 110px 100px 50px;
-            flex-wrap: wrap;
-            position: relative;
-        }
-
-        .hero-image-and-social {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-left: 50px;
-        }
-
-        .hero-content {
-            text-align: left;
-            max-width: 50%;
-        }
-        .hero-content h3 {
-            color: var(--primary-blue);
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-        }
-        .hero-content h1 {
-            font-size: 4.5rem;
-            font-weight: 900;
-            color: var(--text-dark);
-            line-height: 1.2;
-        }
-        .hero-content h2 {
-            font-size: 2rem;
-            color: var(--primary-blue);
-            text-shadow: 0 0 10px rgba(4, 23, 80, 0.3);
-            margin-top: 5px;
-        }
-        .hero-content .highlight {
-            color: var(--secondary-accent);
-            text-shadow: none;
-        }
-        .hero-content p {
-            margin-top: 20px;
-            font-size: 1.1rem;
-            color: var(--text-muted);
-        }
-        .hero-image {
-            width: 380px;
-            height: 380px;
-            position: relative;
-            border: 5px solid var(--primary-blue);
-            border-radius: 50%;
-            box-shadow: 0 0 15px rgba(4, 23, 80, 0.6), 0 0 30px rgba(176, 176, 176, 0.4);
-            overflow: hidden;
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out, box-shadow 0.5s, border-color 0.5s;
-            opacity: 0;
-            transform: translateX(100px);
-            animation: float 4s ease-in-out infinite;
-        }
-
-        .hero-image.loaded {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .hero-image:hover {
-            animation: pulse-border 1.5s infinite alternate;
-            transform: scale(1.02);
-        }
-
-        .hero-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-            display: block;
-        }
-
-        .social-icons {
-            display: flex;
-            flex-direction: row;
-            gap: 25px;
-            align-items: center;
-            justify-content: center;
-            margin-top: 30px;
-            padding: 0;
-        }
-        .social-icons a {
-            font-size: 2rem;
-            color: var(--primary-blue);
-            transition: transform 0.3s, color 0.3s, filter 0.3s;
-        }
-        .social-icons a:hover {
-            color: var(--secondary-accent);
-            filter: drop-shadow(0 0 5px var(--secondary-accent));
-            transform: translateY(-5px) scale(1.1);
-        }
-
-        .btn {
-            margin-top: 30px;
-            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-accent));
-            color: #fff;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.4s;
-            display: inline-block;
-            box-shadow: 0 5px 20px rgba(4, 23, 80, 0.4);
-            border: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .btn:hover {
-            transform: scale(1.05) translateY(-2px);
-            box-shadow: 0 8px 30px rgba(4, 23, 80, 0.6);
-            filter: brightness(1.1);
-        }
-
-        section {
-            padding: 120px 100px;
-            text-align: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 60px;
-            color: var(--primary-blue);
-            font-weight: 700;
-            position: relative;
-            text-align: center;
-            transition: all 0.5s ease-out;
-        }
-        .section-title i {
-            color: var(--secondary-accent);
-            margin-right: 15px;
-        }
-        .edu-container, .project-container, .assign-container, .streams-container, .experience-container, .activities-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .edu-card, .project-card, .assign-card, .stream-card, .work-card, .activity-card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 15px;
-            text-align: left;
-            border: 3px solid var(--primary-blue);
-            box-shadow: 0 5px 15px rgba(4, 23, 80, 0.1);
-            transition: 0.4s ease-in-out;
-            opacity: 0;
-            min-height: 250px;
-        }
-
-        .edu-card {
-            border: 5px solid var(--primary-blue);
-        }
-
-        .stream-card {
-            border: 3px solid var(--primary-blue);
-        }
-
-        .edu-card:hover, .project-card:hover, .assign-card:hover, .stream-card:hover, .work-card:hover, .activity-card:hover {
-            box-shadow: 0 10px 30px rgba(4, 23, 80, 0.4);
-            transform: translateY(-10px);
-            border-color: var(--secondary-accent);
-        }
-
-        .edu-card h3, .project-card h3, .assign-card h3, .stream-card h3, .work-card h3, .activity-card h3 {
-            color: var(--text-dark);
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            border-bottom: 2px solid rgba(176, 176, 176, 0.3);
-            padding-bottom: 5px;
-        }
-        .edu-card p, .project-card p, .assign-card p, .stream-card p, .work-card p, .activity-card p {
-            color: var(--text-dark);
-            margin-top: 5px;
-        }
-        .card-meta {
-            color: var(--primary-blue);
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .project-card a, .assign-card a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-block;
-            margin-top: 15px;
-            transition: color 0.3s;
-        }
-
-        .project-card .btn {
-            float: right;
-            margin-top: 15px;
-            margin-bottom: 0;
-        }
-
-        .project-card::after {
-            content: "";
-            display: block;
-            clear: both;
-        }
-
-        .project-card a:hover, .assign-card a:hover {
-            color: #fff;
-        }
-
-        #about-split {
-            text-align: left;
-        }
-
-        .about-split-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 50px;
-            max-width: 1000px;
-            margin: 0 auto;
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 15px;
-            border: 5px solid var(--primary-blue);
-            box-shadow: 0 5px 20px rgba(4, 23, 80, 0.15);
-            opacity: 0;
-            transition: all 0.5s ease-in-out;
-        }
-
-        .about-split-container:hover {
-            box-shadow: 0 10px 30px rgba(4, 23, 80, 0.4);
-            transform: translateY(-3px);
-        }
-
-        .about-text-content {
-            flex: 2;
-            padding-right: 20px;
-        }
-
-        .about-text-content p {
-            font-size: 1.15rem;
-            line-height: 1.9;
-            color: var(--text-dark);
-            margin: 0;
-            text-align: left;
-            font-family: 'Georgia', serif;
-        }
-
-        .about-image-frame {
-            flex: 1;
-            min-width: 250px;
-            max-width: 300px;
-            height: 300px;
-            border: 5px solid rgba(0, 166, 255, 0.7);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(4, 23, 80, 0.3);
-            transition: transform 0.5s, box-shadow 0.5s;
-        }
-
-        .about-image-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 10px;
-            display: block;
-        }
-
-        .about-image-frame:hover {
-            transform: scale(1.03);
-            box-shadow: 0 10px 30px rgba(4, 23, 80, 0.5);
-        }
-
-        .skills-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: var(--card-bg);
-            padding: 60px 40px;
-            border-radius: 15px;
-            border: 3px solid var(--primary-blue);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            opacity: 0;
-        }
-        .skills-container h3 {
-            color: var(--primary-blue);
-            font-size: 1.5rem;
-            margin-bottom: 25px;
-            font-weight: 600;
-            border-bottom: 2px solid rgba(4, 23, 80, 0.3);
-            padding-bottom: 10px;
-        }
-        .skills-icons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-        }
-        .skills-icons a {
-            transition: transform 0.3s ease-out, filter 0.3s ease-out;
-            display: block;
-        }
-        .skills-icons a:hover {
-            transform: scale(1.1) translateY(-5px);
-            filter: drop-shadow(0 0 10px var(--primary-blue));
-        }
-        .card-id {
-            float: right;
-            background: var(--secondary-accent);
-            color: #fff;
-            padding: 2px 8px;
-            border-radius: 5px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-top: -10px;
-            animation: pulse-glow 2s infinite ease-in-out;
-            margin-left: 10px;
-        }
-
-        .project-card::after, .assign-card::after, .activity-card::after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-
-        .project-card .btn, .assign-card .btn, .activity-card .btn {
-            margin-top: 15px;
-            margin-bottom: 0;
-            float: right;
-        }
-
-        #assignments .assign-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        /* UPDATED GALLERY GRID STYLES */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Increased min-width to 300px */
-            gap: 100px;
-        }
-        .gallery-grid img {
-            width: 65%;
-            height: 400px; /* Increased height to match */
-            object-fit: cover;
-            border-radius: 10px;
-            border: 3px solid rgba(176, 176, 176, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
-            /* opacity: 0;  <--- THIS LINE WAS REMOVED */
-        }
-        .gallery-grid img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 20px var(--secondary-accent);
-            border-color: var(--secondary-accent);
-        }
-        .contact-info {
-            text-align: left;
-            max-width: 700px;
-            margin: auto;
-            line-height: 2.5;
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 15px;
-
-            /* UPDATED: 5px dark blue border */
-            border: 5px solid var(--primary-blue);
-
-            /* Initial shadow for the animation */
-            box-shadow: 0 5px 15px rgba(4, 23, 80, 0.1);
-
-            font-size: 1.1rem;
-            opacity: 0;
-
-            /* Added transition for smooth hover effects */
-            transition: all 0.4s ease-in-out;
-        }
-
-        /* NEW: Hover effect for animated shadow and slight lift */
-        .contact-info:hover {
-            box-shadow: 0 10px 30px rgba(4, 23, 80, 0.4); /* Deeper, more prominent shadow */
-            transform: translateY(-5px); /* Subtle lift effect */
-            border-color: var(--secondary-accent); /* Optional: Change border color on hover */
-        }
-
-        footer {
-            background: var(--light-bg);
-            text-align: center;
-            padding: 30px;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        @media (max-width: 900px) {
-            .navbar {
-                padding: 15px 20px;
-            }
-            .menu-toggle {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 70px;
-                right: 0;
-                width: 100%;
-                background: rgba(255, 255, 255, 0.98);
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-                padding: 20px 0;
-                border-top: 1px solid var(--secondary-accent);
-                z-index: 99;
-                transition: all 0.3s ease-in-out;
-                transform: translateY(-100%);
-            }
-
-            .nav-links.active {
-                display: flex;
-                transform: translateY(0);
-            }
-
-            .nav-links li {
-                width: 100%;
-                text-align: center;
-                padding: 5px 0;
-            }
-            .nav-links a {
-                display: block;
-                padding: 10px 20px;
-                border-bottom: none;
-                font-size: 1.1rem;
-            }
-            .nav-links a:hover {
-                background: var(--light-bg);
-            }
-
-            .hero {
-                flex-direction: column;
-                padding-top: 100px;
-                height: auto;
-                padding-left: 20px;
-                padding-right: 20px;
-            }
-            .hero-content {
-                max-width: 100%;
-                text-align: center;
-                order: 2;
-            }
-            .hero-image-and-social {
-                margin: 30px auto 0;
-                order: 1;
-            }
-            .hero-image {
-                width: 250px;
-                height: 250px;
-                animation: none;
-            }
-            .social-icons {
-                margin-top: 20px;
-            }
-            section {
-                padding: 80px 20px;
-            }
-
-            .about-split-container {
-                flex-direction: column;
-                padding: 30px;
-                gap: 30px;
-            }
-            .about-image-frame {
-                max-width: 90%;
-                min-width: 90%;
-                height: 250px;
-            }
-        }
-    </style>
 </head>
 <body>
 <header>
@@ -705,7 +102,6 @@
 </section>
 
 ---
-
 <section id="skills" class="skills">
     <h2 class="section-title animate-on-scroll"><i class="fa-solid fa-screwdriver-wrench"></i> Technical Skills & Tools</h2>
     <div class="skills-container animate-on-scroll">
@@ -720,10 +116,12 @@
             <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="60" height="60"/> </a>
             <a href="https://www.linux.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="60" height="60"/> </a>
             <a href="https://www.mysql.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="60" height="60"/> </a>
-            <a href="httpsRead
-Me
-.
-photoshop.com/en" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/adobe_photoshop/adobe_photoshop-icon.svg" alt="photoshop" width="60" height="60"/> </a>
+            <a href="https://spring.io/projects/spring-boot" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="Spring Boot" width="60" height="60"/> </a>
+            <a href="https://www.postgresql.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg" alt="PostgreSQL" width="60" height="60"/> </a>
+            <a href="https://en.wikipedia.org/wiki/JavaServer_Pages" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/java/java-icon.svg" alt="JSP" width="60" height="60"/> </a>
+            <a href="https://getbootstrap.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap" width="60" height="60"/> </a>
+            <a href="https://restfulapi.net/" target="_blank" rel="noreferrer"> <img src="https://img.icons8.com/color/48/000000/api.png" alt="REST API" width="60" height="60"/> </a>
+            <a href="https://github.com/features/actions" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/github/github-icon.svg" alt="GitHub Actions" width="60" height="60"/> </a>
         </div>
     </div>
 </section>
@@ -732,28 +130,28 @@ photoshop.com/en" target="_blank" rel="noreferrer"> <img src="https://www.vector
 <section id="education" class="education">
     <h2 class="section-title animate-on-scroll"><i class="fa-solid fa-graduation-cap"></i> Educational Background</h2>
     <div class="edu-container">
-        <div class="edu-card animate-on-scroll">
+        <div class="edu-card animate-on-scroll fade-in-left">
             <span class="card-meta">2008 - 2018</span>
             <h3>B/ Welimada Vijaya Vidyalaya</h3>
             <p>Completed studies from Grade 1 to Grade 11, leading up to the G.C.E. Ordinary Level examinations.</p>
         </div>
-        <div class="edu-card animate-on-scroll">
+        <div class="edu-card animate-on-scroll fade-in-left">
             <span class="card-meta">2019 – 2021</span>
             <h3>B/ Bandarawela Central College</h3>
             <p>G.C.E. Advanced Level studies in the Physical Science stream.</p>
         </div>
 
-        <div class="edu-card animate-on-scroll">
+        <div class="edu-card animate-on-scroll fade-in-left">
             <span class="card-meta">2022 – 2023</span>
             <h3>DP Education Coding School</h3>
             <p>Completed comprehensive training in software development, focusing on programming fundamentals and practical coding skills.</p>
         </div>
-        <div class="edu-card animate-on-scroll">
+        <div class="edu-card animate-on-scroll fade-in-left">
             <span class="card-meta">2023 – 2024</span>
             <h3>Ceylon Pharmacy College</h3>
             <p>Completed a Diploma in Pharmacy, gaining knowledge in pharmaceutical science, drug formulation, and healthcare practices.</p>
         </div>
-        <div class="edu-card animate-on-scroll">
+        <div class="edu-card animate-on-scroll fade-in-left">
             <span class="card-meta">2024 – Present</span>
             <h3>IJSE Panadura</h3>
             <p>Currently pursuing the GDSE program, focusing on software development, programming, and IT fundamentals.</p>
@@ -820,7 +218,7 @@ photoshop.com/en" target="_blank" rel="noreferrer"> <img src="https://www.vector
             <a href="https://github.com/jayanidissanayake15/Jayani_Web" class="btn" target="_blank">View on GitHub</a>
         </div>
 
-        <div class="project-card animate-on-scroll">
+        <div class="project-card animate-on-scroll project-centered">
             <span class="card-meta">HTML | CSS | JavaScript | jQuery | Bootstrap | MVC</span>
             <h3>Single Page POS System</h3>
             <p>
@@ -837,25 +235,25 @@ photoshop.com/en" target="_blank" rel="noreferrer"> <img src="https://www.vector
 <section id="assignments" class="assignments">
     <h2 class="section-title animate-on-scroll"><i class="fa-solid fa-list-check"></i>Assignments</h2>
     <div class="assign-container">
-        <div class="assign-card animate-on-scroll">
+        <div class="assign-card animate-on-scroll fade-in-right">
             <span class="card-meta">HTML | CSS | Frontend</span>
             <h3>CSS Selectors Practice</h3>
             <p>Practiced styling web pages using a variety of CSS selectors: element, class, ID, group, descendant, child, sibling, and attribute selectors. Focused on writing organized, maintainable, and precise CSS.</p>
             <a href="https://github.com/jayanidissanayake15/Assignment_01" class="btn">View Source</a>
         </div>
-        <div class="assign-card animate-on-scroll">
+        <div class="assign-card animate-on-scroll fade-in-right">
             <span class="card-meta">HTML | CSS | Responsive Design</span>
             <h3>CSS Positioning & Layout Practice</h3>
             <p>Practiced designing web pages using various CSS positioning techniques, including Absolute, Relative, Fixed, and Sticky positions. Applied the Box Model and Grid Layout to create multiple flexible layouts that maintain consistency across content changes and device sizes.</p>
             <a href="https://github.com/jayanidissanayake15/Assignment_02" class="btn">View Source</a>
         </div>
-        <div class="assign-card animate-on-scroll">
+        <div class="assign-card animate-on-scroll fade-in-right">
             <span class="card-meta">HTML | CSS | Animations</span>
             <h3>CSS Animations & Transitions</h3>
             <p>Implemented a variety of animations and transitions using pure HTML and CSS, including interactive navigation effects, rotating elements, loaders, image sliders, and moving objects to enhance user experience and visual appeal.</p>
             <a href="https://github.com/jayanidissanayake15/Assignment_03" class="btn">View Source</a>
         </div>
-        <div class="assign-card animate-on-scroll">
+        <div class="assign-card animate-on-scroll fade-in-right">
             <span class="card-meta">HTML | CSS | Practical Exercises</span>
             <h3>CSS Practice Cases</h3>
             <p>Completed multiple CSS practice exercises focusing on layout, styling, and responsive design. Each case (01–06) explores different techniques including positioning, Flexbox, Grid, and animations to strengthen practical front-end development skills.</p>
@@ -903,36 +301,29 @@ photoshop.com/en" target="_blank" rel="noreferrer"> <img src="https://www.vector
     <h2 class="section-title animate-on-scroll"><i class="fa-solid fa-paper-plane"></i> Get In Touch</h2>
     <div class="contact-info animate-on-scroll">
 
-        <p class="contact-intro">
-            I'm currently seeking new opportunities and open to collaborating on innovative projects.
-            Feel free to connect directly via email or reach out on any of my professional channels below.
-        </p>
-<br>
-        <ul class="contact-details-list">
-            <li>
-                <i class="fa-solid fa-envelope"></i>
-                <strong>Email:  </strong>
-                <a href="mailto:jayanidissanayake15@gmail.com">jayanidissanayake15@gmail.com</a>
-            </li>
+        <div class="contact-form">
+            <h3>Send Me a Message</h3>
+            <form id="contactForm" action="mailto:jayanidissanayake15@gmail.com" method="POST" enctype="text/plain">
+                <input type="text" name="name" placeholder="Your Full Name" required>
+                <input type="email" name="email" placeholder="Your Email Address" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit" class="btn" style="margin-top: 0;">Send Message <i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+        </div>
 
-            <li>
-                <i class="fa-brands fa-linkedin"></i>
-                <strong>LinkedIn:  </strong>
-                <a href="https://www.linkedin.com/in/jayani-dissanayake-039291396?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank">linkedin.com/in/jayani-dissanayake</a>
-            </li>
+        <div class="contact-details-group">
+            <h3>Contact Details </h3>
+            <p class="contact-intro">
+                I'm currently seeking new opportunities and open to collaborating on innovative projects. Feel free to connect directly via any of the channels below.
+            </p>
 
-            <li>
-                <i class="fa-brands fa-github"></i>
-                <strong>GitHub:  </strong>
-                <a href="https://github.com/jayanidissanayake15" target="_blank">github.com/jayanidissanayake15</a>
-            </li>
-
-            <li>
-                <i class="fa-solid fa-phone"></i>
-                <strong>WhatsApp:  </strong>
-                <a href="tel:+94704834552">+94 70 483 4552</a>
-            </li>
-        </ul>
+            <div class="contact-social-icons social-icons">
+                <a href="https://github.com/jayanidissanayake15" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="#" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://wa.me/94704834552" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="mailto:jayanidissanayake15@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
 
     </div>
 </section>
@@ -956,7 +347,20 @@ photoshop.com/en" target="_blank" rel="noreferrer"> <img src="https://www.vector
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
-                entry.target.style.animation = 'fadeInOnScroll 1s ease-out forwards';
+
+                if (entry.target.classList.contains('skills-container')) {
+                    entry.target.style.animation = 'slide-in-out 6s ease-in-out infinite alternate';
+                } else if (entry.target.classList.contains('fade-in-right')) {
+                    entry.target.style.animation = 'fadeInFromRight 1s ease-out forwards';
+                    entry.target.style.transform = 'translateX(0)';
+                } else if (entry.target.classList.contains('fade-in-left')) {
+                    entry.target.style.animation = 'fadeInFromLeft 1s ease-out forwards';
+                    entry.target.style.transform = 'translateX(0)';
+                } else {
+                    entry.target.style.animation = 'fadeInOnScroll 1s ease-out forwards';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+
                 observer.unobserve(entry.target);
             }
         });
@@ -964,13 +368,33 @@ photoshop.com/en" target="_blank" rel="noreferrer"> <img src="https://www.vector
 
     elements.forEach(el => {
         observer.observe(el);
+        if (el.classList.contains('fade-in-right')) {
+            el.style.transform = 'translateX(30px)';
+        } else if (el.classList.contains('fade-in-left')) {
+            el.style.transform = 'translateX(-30px)';
+        } else if (!el.classList.contains('skills-container') && !el.classList.contains('about-split-container')) {
+            el.style.transform = 'translateY(30px)';
+        }
     });
 
     function resetAnimation() {
         elements.forEach(el => {
             el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
             el.style.animation = 'none';
+
+            if (el.classList.contains('fade-in-right')) {
+                el.style.transform = 'translateX(30px)';
+            } else if (el.classList.contains('fade-in-left')) {
+                el.style.transform = 'translateX(-30px)';
+            } else if (!el.classList.contains('skills-container') && !el.classList.contains('about-split-container')) {
+                el.style.transform = 'translateY(30px)';
+            }
+
+            if (el.classList.contains('skills-container')) {
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+                el.style.animation = 'slide-in-out 6s ease-in-out infinite alternate';
+            }
             observer.observe(el);
         });
     }
@@ -978,6 +402,9 @@ photoshop.com/en" target="_blank" rel="noreferrer"> <img src="https://www.vector
     const heroImage = document.querySelector('.hero-image');
     setTimeout(() => {
         heroImage.classList.add('loaded');
+        document.querySelectorAll('#animated-name .line span').forEach((span, index) => {
+            span.style.animationName = 'text-shift-in';
+        });
     }, 500);
 
     const navLinks = document.getElementById('navLinks');
